@@ -25,6 +25,15 @@ This means: a Terminology Implementer working with OpenMRS and CIEL must be able
 5. A source administrator can receive, review, and act on concept proposals from community members
 6. The comparison tool allows any two concepts, versions, or expansions to be placed side by side without losing navigational context
 
+## Strategic Milestones
+
+| Milestone | Date | Primary Focus |
+|---|---|---|
+| OpenMRS Conference | Sep 15–19, 2025 | Concept/mapping authoring, source management |
+| Montreal | Oct 7, 2025 | LOINC viewing, collection browsing, source authoring |
+| Interim | Nov 2025 | Collection management, reference workflows |
+| New Year | Jan 2026 | Full TBv3 scope |
+
 ## What TBv3 Is Not (v3 Scope Boundary)
 
 - Multi-server / cross-server terminology management
