@@ -1,4 +1,5 @@
 # Object: Concept
+(To Do: Add hierarchy attributes i.e. parent_concept_URL)
 
 ## Schema
 
@@ -57,19 +58,19 @@ Active (default)
   └─ Retired  (soft delete; preserved in history, excluded from active expansions)
 ```
 
-A concept is never hard-deleted if it has been included in any released version. Retire is the correct operation for removing content.
+A concept is never hard-deleted if it has been included in any released version. Retire is the correct operation for removing content. Hard-deletes should be enabled for concepts in HEAD only.
 
 ---
 
-## Business Rules
+## Business Rules (To Do: Check these against OpenMRS validation schema rules to verify which are OCL-specific vs. OpenMRS-specific)
 
 ### Names
 - Every concept must have at least one name
 - Each locale must have at most one name with `locale_preferred = true`
-- Each locale should have at most one name with `name_type = "Fully Specified"` (required by OpenMRS validation schema)
+- Each locale should have at most one name with `name_type = "Fully Specified"` (required by OpenMRS validation schema if used)
 - A concept may have multiple names in multiple locales
 
-### Display Name Resolution
+### Display Name Resolution (To Do: Verify this)
 When OCL needs to show a single display name for a concept:
 1. Find names matching the user's active locale (exact match)
 2. Among those, prefer `locale_preferred = true`
@@ -82,6 +83,7 @@ When OCL needs to show a single display name for a concept:
 - Must be unique within the source
 - Cannot be changed after creation
 - Used in reference URLs
+- Future state: May use prefixes, suffixes, etc. or other dynamic rules for ID generation
 
 ### Custom Attributes (Extras)
 - Arbitrary key-value pairs
@@ -93,7 +95,7 @@ When OCL needs to show a single display name for a concept:
 - Computed server-side automatically on create/update
 - `standard` changes on any attribute change
 - `smart` changes only on clinically significant changes (names, mappings, concept class, datatype)
-- The UI uses checksums to detect whether a concept has meaningfully changed across source versions (see version locking)
+- The API uses checksums to detect whether a concept has meaningfully changed across source versions (see version locking)
 
 ---
 
@@ -114,22 +116,17 @@ When OCL needs to show a single display name for a concept:
 
 ## Validation Rules by Schema
 
-### OpenMRS Dictionary Schema
+### OpenMRS Dictionary Schema (to do: Verify and fill this in.)
 - Must have exactly one name with `name_type = "Fully Specified"` per locale present
 - Concept class must be one of the configured OpenMRS values
 - Datatype must be one of the configured OpenMRS values
 - Concepts with datatype "Coded" must have at least one mapping with `map_type = "Q-AND-A"` or `map_type = "CONCEPT-SET"`
 
-### FHIR CodeSystem Schema
-- Concept ID is the FHIR `code`
-- Must have a display name for the default locale
-- `concept_class` maps to FHIR `property` values
-
 ---
 
-## UI Display Rules
+## UI Display Rules(To do: Add concept chip.)
 
 - In list views: show concept ID, display name, concept class, source chip
 - In split view / detail view: show all names grouped by locale, descriptions, core properties, mappings, custom attributes, history
-- Retired concepts: shown with a visual "Retired" badge; excluded from search results by default (can be included with filter)
+- Retired concepts: shown with a visual "Retired" indicator; excluded from search results by default (can be included with filter)
 - Concepts from another source (referenced into a collection): show provenance chip indicating the originating source

@@ -1,5 +1,7 @@
 # Object: Repository
 
+(To Do: Add in template configuration for specific Extra attribute?)
+
 A Repository is the top-level container for terminology content. There are two subtypes: Source and Collection. They share a common schema but have meaningfully different behaviors.
 
 ## Schema
@@ -13,7 +15,7 @@ repository:
   owner_type: string                # "Organization" | "User"
 
   # Classification
-  repo_type: string                 # "Source" | "Collection"
+  repo_type: string                 # "Source" | "Collection" (may include other types e.g. Concept Dictionary in future)
   source_type: string?              # Source subtype: "Dictionary", "Interface Terminology", "Indicator Registry", etc.
   collection_type: string?          # Collection subtype: "Dictionary", "Value Set", etc.
   custom_validation_schema: string? # e.g. "OpenMRS" — activates schema-based validation
@@ -27,7 +29,7 @@ repository:
   external_id: string?
 
   # Localization
-  default_locale: string            # BCP-47 e.g. "en"
+  default_locale: string            # BCP-47 e.g. "en" 
   supported_locales: string[]
 
   # Configuration
@@ -51,8 +53,8 @@ repository:
   # System-managed
   url: string                       # Canonical (unversioned) URL
   versions_url: string
-  concepts_url: string?             # Sources only
-  mappings_url: string?             # Sources only
+  concepts_url: string?             
+  mappings_url: string?             
   references_url: string?           # Collections only
   created_on: datetime
   updated_on: datetime
@@ -77,7 +79,7 @@ dropdown_config:
 
 ---
 
-## Repository Subtypes
+## Repository Subtypes (To Do: Refine this to show ConceptMap as a source/collection, CodeSystem as its own subtype?)
 
 | Repo Type | Subtype | Primary Use | FHIR Equivalent |
 |---|---|---|---|
@@ -140,14 +142,15 @@ Accessible via "View all attributes" dialog (not in header):
 - All FHIR-specific attributes
 
 ### Canonical URL
-- Must be unique across the OCL instance
+- Must be unique across the OCL instance if registering to OCL's Global Registry
+- Must be unique within the local URL registry
 - Validated against the Canonical URL Registry on create/edit
 - Used in all FHIR resource identifiers
 
 ### Custom Validation Schema
 - Activating a validation schema applies content constraints that are enforced at concept/mapping create/edit
 - Changing the schema on an existing repo does not retroactively validate existing content
-- Supported schemas: `"OpenMRS"`, `"FHIR_CodeSystem"`, others TBD
+- Supported schemas: `"OpenMRS"`, `"FHIR_CodeSystem"`, `WHO SMART Guidelines`, others TBD
 
 ---
 
@@ -168,10 +171,10 @@ Accessible via "View all attributes" dialog (not in header):
 ## UI Display Rules
 
 **Repository list view (org or user repos page):**
-- Show: repo ID, full name, repo type badge, description (truncated), concept/mapping count, last updated
+- Show: repo ID, full name, repo type badge, description (truncated), concept/mapping/version count, last updated
 - Default sort: ID ascending
 
-**Repository header (detail page):**
+**Repository header (detail page):** (To Do: Check this against new Version design)
 - See "Repository Header Attributes" above
 - Always show: current version context, version selector dropdown
 - Version dropdown: show version ID, release status, release date, visibility icon — do NOT wrap

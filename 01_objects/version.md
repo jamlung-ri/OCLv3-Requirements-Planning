@@ -45,6 +45,7 @@ version:
 - Cannot be referenced from other repositories
 - Does not have a release date
 - Should not be shown first in any dropdown or list; shown last, visually distinct
+    - Repo admins can elect to hide HEAD from non-member users
 - Direct URL: `/:owner/sources/:source/HEAD/`
 
 **Released Versions:**
@@ -80,7 +81,7 @@ Draft Versions (created but not yet released) are visible to repo owners but not
 
 ### Creating a Version
 - A version is a snapshot of HEAD at the moment of creation
-- For collections: creating a version also triggers an **auto-expansion** to be computed
+- For collections: creating a version copies the **auto-expansion** of the HEAD version
 - For sources: creating a version captures all current concepts and mappings; HEAD continues as a new working copy
 
 ### Releasing a Version

@@ -20,7 +20,7 @@ Two-panel layout within the tab:
 - **Left panel**: List of all versions (including HEAD)
 - **Right panel**: Expansions for the selected version
 
-Selecting a version in the left panel updates the right panel to show that version's expansions.
+Selecting a version in the left panel updates the right panel to show that version's expansions. (To Do: Consider if we should continue using OCLv2's way of showing all expansions for each version)
 
 See `04_surfaces/versions-expansions-tab.md` for the full layout specification.
 
@@ -39,8 +39,8 @@ See `04_surfaces/versions-expansions-tab.md` for the full layout specification.
    - **Released**: checkbox (default: unchecked — creates as Draft first)
 2. On submit:
    - For Collections: also creates the **auto-expansion** (async); progress indicator shown while it computes
-   - For Sources: creates a snapshot of HEAD; HEAD continues as a new working copy
-3. Success: new version appears in the list; if collection, expansion shows as "Processing"
+   - For Sources: creates a snapshot of HEAD; HEAD continues as a working copy
+3. Success: new version appears in the list; if collection, expansion shows as "Processing" (To Do: Add Processing State for Source creation due to indexing and export generation)
 
 ### Releasing a Draft Version
 - Draft versions have a "Release" action button in the version list
@@ -117,7 +117,7 @@ The comparison produces a change summary:
 - **Added concepts**: concepts in the new version not present in the previous
 - **Retired/removed concepts**: concepts that have become inactive or were deleted
 - **Modified concepts**: concepts whose names, properties, or mappings changed
-- **Affected references**: count of references in the collection that point to changed concepts
+- **Affected references**: count of references in the collection that point to changed concepts and mappings
 
 This event is what triggers the notification. No notification is generated if the new source version contains no changes that affect the collection's resolved references.
 
@@ -147,7 +147,7 @@ This event is what triggers the notification. No notification is generated if th
 **Collection header banner**
 - When a user navigates to a collection that has an unreviewed dependency update, a persistent yellow banner appears at the top of the collection page:
   > ⚠️ **[Source Name]** released a new version. [N] of your references may be affected. [Review updates →]
-- Banner is dismissible per session; reappears on next visit until the update workflow is completed or dismissed permanently by the owner
+- Banner is dismissible per session ("Snooze"); reappears on next visit until the update workflow is completed or dismissed permanently by the owner
 
 **Email notification** (if enabled in user settings)
 - Subject: "[Source Name] released a new version — review updates to [Collection Name]"

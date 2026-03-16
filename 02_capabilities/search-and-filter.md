@@ -35,9 +35,8 @@ This capability covers all search entry points: global search (full-page results
 |---|---|
 | Concept Name | Bold; search term highlighted (match only — not other words that happen to contain the letters) |
 | Concept Class | |
-| Repository | Chip linking to the source; never wraps to second line |
 | Datatype | Hide from main view if N/A in >50% of results; available as filter-in option |
-| External ID | |
+| Repository | Chip linking to the source; never wraps to second line | (To Do: Ensure Repository is shown as a chip with version and owner displayed)
 
 - Row click: opens Split View (concept detail panel on the right)
 - Split view open: list columns may condense; Repository column must not wrap

@@ -26,7 +26,7 @@ Identical to the concept creation form (`02_capabilities/author-concept.md`) wit
 - The form header reads "Propose New Concept to [Source Name]"
 - A **Reason** field is added (textarea; optional but strongly encouraged — prompt text: "Describe why this concept is needed and how it will be used")
 - A **Mappings** section is available but labeled "Supporting Mappings (informational)" — these are not created automatically; the admin decides during review
-- Concept ID may be left blank ("Assign automatically" option)
+- Concept ID may be left blank ("Assign automatically" option) - appears only if source admins enable manual ID generation i.e. no ID auto-assignment
 - Submit button: "Submit Proposal" (not "Save Concept")
 
 ### Edit Concept Proposal Form
@@ -62,16 +62,16 @@ Identical to the concept creation form (`02_capabilities/author-concept.md`) wit
 - Proposed concept details
 - Comment thread (proposer can add comments at any time)
 - Withdraw button (available until Approved or Rejected)
-
+(To Do: Add action for Approved proposals to be Added to Collection, Cloned, etc.)
 ---
 
-## Managing Proposals (Source Administrator View)
+## Managing Proposals (Source Administrator View) (To Do: Explore idea of public-facing Proposal view for non-admins to see/add to/endorse existing proposals)
 
 ### Entry Point
 - Source repository → "Concept Proposals" tab
 - Badge on the tab showing count of pending proposals (Submitted + In Review)
 
-### Proposals List
+### Proposals List 
 
 | Column | Notes |
 |---|---|
@@ -79,7 +79,7 @@ Identical to the concept creation form (`02_capabilities/author-concept.md`) wit
 | Type | New Concept / Edit / Retire |
 | Submitter | Username chip |
 | Submitted | Relative date |
-| Status | Badge: Submitted / In Review / Approved / Rejected |
+| Status | Badge: Submitted / In Review / Approved / Rejected / Withdrawn|
 | Origin | TBv3 or Mapper badge |
 
 - Default filter: pending proposals only (Submitted + In Review)

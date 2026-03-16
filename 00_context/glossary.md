@@ -78,7 +78,7 @@ Settings controlling how a collection expansion is evaluated:
 | `$expand` | Evaluate a ValueSet |
 | `$lookup` | Get a concept from a CodeSystem |
 | `$validate-code` | Check if a code is valid |
-| Cascade | (OCL-only; not standard FHIR) |
+| Cascade | (OCL-only; not standard FHIR; somewhat similar to FHIR's `$subsume` operation) |
 
 ---
 

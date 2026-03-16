@@ -9,7 +9,7 @@ expansion:
   id: string                    # e.g. "expansion1", "2024-01-01"
   canonical_url: string?        # Stable URL for this specific expansion
   is_default: boolean           # Whether this is the default expansion for its version
-  parameters:
+  parameters: (To Do: Verify and fill in other potential parameters)
     repo_versions: Record<sourceUrl, versionId>  # Pinned source versions
     date: date?                 # Evaluate using versions released as of this date
     filter: Filter[]?           # Additional filter criteria
@@ -40,7 +40,7 @@ Processing  →  Complete
 (any)       →  Error (if evaluation fails)
 ```
 
-All collection versions have at least one **auto-expansion** created automatically on version creation. Additional custom expansions can be created with different parameters.
+All collection versions will generally have at least one **auto-expansion** created automatically on version creation. Additional custom expansions can be created with different parameters.
 
 ---
 
@@ -48,14 +48,14 @@ All collection versions have at least one **auto-expansion** created automatical
 
 ### Auto-Expansion
 - Created automatically when a repo version is created
-- Parameters default to: `active_only = true`, `repo_versions = {}` (use canonical source versions)
-- Users do not need to create a custom expansion unless they want different behavior from the auto-expansion
+- Parameters default to: `active_only = true`, `repo_versions = {}` (use canonical source versions) # (To Do: Verify default parameters)
+- Users do not need to create a custom expansion unless they want different behavior from the auto-expansion 
 
 ### Default Expansion
 - Each collection version has exactly one default expansion
 - The default expansion is what users see when browsing a collection version
 - The auto-expansion is the initial default; owners can change this
-- When the HEAD collection is being browsed live, the auto-expansion updates as references are added
+- When the HEAD collection is being browsed live, the auto-expansion updates as references are added # (To Do: Ensure that the behavior for auto-expand saving resources as a version are clear here - saves the expansion as-is rather than re-evaluating references)
 
 ### Version Pinning via Parameters vs. References
 - **Preferred**: control which source versions are used via expansion parameters (`repo_versions`)
@@ -111,3 +111,5 @@ Expansion detail:
 - Show all resolved repo versions (full list)
 - Show list of excluded resources
 - Allow browsing concepts/mappings within the expansion
+
+To Do: Add Information regarding expansion comparison.

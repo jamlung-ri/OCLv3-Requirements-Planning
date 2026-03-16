@@ -23,7 +23,7 @@ Only Source owners and editors can use this capability directly. Terminology Imp
 | Datatype | Dropdown | From `dropdown_config.datatype` |
 | Names | Repeating group | At least one name required; see Name sub-form below |
 
-**Optional:**
+**Optional:** 
 | Field | Input Type | Notes |
 |---|---|---|
 | Concept ID | Text | Auto-assigned if source is configured for auto-ID; otherwise user-defined |
@@ -71,12 +71,14 @@ Only Source owners and editors can use this capability directly. Terminology Imp
 | Map Type | Dropdown | From `dropdown_config.map_type`; required |
 | To Concept | Search + select OR text | If "to" concept is in OCL: search and pick; if external: type the code and source |
 | To Source | Text or dropdown | If internal OCL concept is selected, auto-populated; otherwise user types |
-| Sort Weight | Number | Optional; used for ordering Q-AND-A / CONCEPT-SET answers |
+| Sort Weight | Number | Optional; used for ordering Q-AND-A / CONCEPT-SET answers | 
+(To Do: Remove Sort Weight from here, provide a better method for assigning sort weight in UI)
 
 ### Internal vs. External Target
 - Toggle: "OCL concept" (default) | "External code"
 - OCL concept: shows a Searchlite-style search for concepts; selecting auto-populates To Source
 - External code: shows free-text fields for code + source name + optional canonical URL
+(To Do: Document OCLv2's current Add Mapping behavior here, namely for populating "Source name" via search, canonical URL, etc.)
 
 ### After Save
 - Mapping appears immediately in the concept's Associations panel
@@ -109,11 +111,12 @@ Dropdown configuration (concept class, datatype, name types, map types) is manag
 ### Entry Point
 - Repository → Settings tab → "Configure Dropdowns" (owners only)
 
-### Interaction
+### Interaction (To Do: Factor in the probable case that users will link these to an OCL source/collection instead of custom-managing each value)
 - For each field: a list of current values with add/edit/delete controls
 - Values can be reordered (drag or up/down arrows); order affects display in dropdowns
-- Deleting a value does not remove it from existing concepts; it only removes it as a future option
+- Deleting a value does not remove it from existing concepts; it only removes it as a future option in UI forms
 - If a source has no dropdown config, freeform text entry is allowed in all concept fields
+- (To Do: Add OCL's default sources for each field)
 
 ---
 

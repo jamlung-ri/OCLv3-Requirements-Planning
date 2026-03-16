@@ -1,6 +1,12 @@
-# Object: Concept Proposal
+# Object: Concept Proposal 
+
+To Do: 
+* Ensure that source admin can edit concept proposals before approving
+* Concept proposals should not be enabled by default - only if source admin enables it.
 
 A Concept Proposal is a formal request to add or modify a concept in a source that the proposer does not own. It is a first-class resource tracked with status, comments, and audit trail. Proposals from TBv3 and from OCL Mapper are stored in the same database and managed by source administrators in TBv3.
+
+"?" represents optional (non-required) attributes
 
 ## Schema
 
@@ -15,14 +21,13 @@ concept_proposal:
   target_concept_url: string?   # Set for Edit/Retire proposals; null for New Concept
 
   # Proposed content
-  proposed_concept:
-    id: string?                 # For "New Concept" proposals; may be left blank for admin to assign
+  proposed_concept:             # If concept templates are supported and enabled, proposer may select one to start with
     concept_class: string
     datatype: string
     names: Name[]
     descriptions: Description[]
     mappings: Mapping[]?
-    extras: Record<string, any>?
+    extras: Record<string, any>?   
 
   reason: string?               # Proposer's justification
 
@@ -118,14 +123,17 @@ Submitted / In Review  →  Withdrawn  (by proposer)
 ## UI Display Rules
 
 **For proposers (TI/TP submitting a proposal):**
-- Accessed from a concept detail page ("Propose Edit") or from a source's "New Concept Proposal" CTA
+- Accessed from a concept detail page ("Propose Edit") or from a source's "Propose a Concept" CTA
 - A form showing the proposed concept fields alongside the existing values (if editing)
 - Status tracker shown once submitted (Draft → Submitted → In Review → Approved/Rejected)
 - Comment thread visible throughout
+
+**For proposers (TI/TP reviewing their outstanding proposals) - To Do**
+-
 
 **For source administrators (TP managing their queue):**
 - Proposals tab in the Source repository view (badge showing pending count)
 - List view: proposal ID, type, submitter, submitted date, status, origin (TBv3 / Mapper)
 - Detail view: side-by-side of current concept vs. proposed changes (for edits), full proposed concept (for new), comment thread
 - Action buttons: "Mark In Review", "Approve", "Reject", "Add Comment"
-- Filtering: by status, proposal type, submitter, origin, date range
+- Filtering: by status, proposal type, submitter, origin, date range, concept class, datatype

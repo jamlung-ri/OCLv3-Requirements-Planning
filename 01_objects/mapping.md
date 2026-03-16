@@ -16,6 +16,9 @@ mapping:
   from_concept_code: string     # Code (ID) of the from-concept (denormalized for display)
   from_concept_name: string?    # Display name (denormalized; may lag source)
   from_source_url: string       # URL of the from-concept's source
+  Future: canonical_URL         # source's canonical URL
+
+(To Do: Verify rules for Mapping From/To concepts e.g. field combinations.)
 
   # To (may be internal OCL concept or external code)
   to_concept_url: string?       # Set if the target is an OCL concept
@@ -23,6 +26,7 @@ mapping:
   to_concept_name: string?      # Display name of target (denormalized)
   to_source_url: string?        # URL of the target source (OCL or external)
   to_source_version_url: string?
+  Future: canonical_URL         # source's canonical URL
 
   sort_weight: float?           # Controls ordering of mappings within display (e.g., answer lists)
   retired: boolean              # Default false
@@ -60,7 +64,7 @@ Allowed map types are configured per repository via `dropdown_config.map_type`.
 
 ---
 
-## Internal vs. External Mappings
+## Internal vs. External Mappings (To Do: Add in the distinction for within-source Internal mapping e.g. Q&A mappings (unsure how we should classify this - within a source, within ownership, etc.))
 
 **Internal mapping:** `to_concept_url` points to a concept in the same OCL instance. The target concept can be resolved and its details shown inline.
 
@@ -110,8 +114,9 @@ Allowed map types are configured per repository via `dropdown_config.map_type`.
 - This view requires a redesign from the current TBv2 layout — the existing list is unreadable
 - Table columns: ID | From Concept | Map Type | Target Concept (to_concept_code + to_source)
 - Row click opens split view with mapping detail
-- Filtering: by map_type, from/to source, retired status
-- Retired mappings hidden by default, toggle to show
+- Resolvable concepts appear as a clickable chip that opens the concept's detail view 
+- Filtering: by map_type, from/to source, retired status (To Do: add other filters)
+- Retired mappings hidden by default, toggle filters to show
 
 **Mapping detail (split view):**
 - Show all core fields

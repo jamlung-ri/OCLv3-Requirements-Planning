@@ -61,7 +61,7 @@
 
 ---
 
-## Permission Matrix
+## Permission Matrix (To Update - use ongoing permissions framework!)
 
 | Action | TC | TI (own repo) | TI (other repo) | TP (own repo) | TP (other repo) | Admin |
 |---|---|---|---|---|---|---|

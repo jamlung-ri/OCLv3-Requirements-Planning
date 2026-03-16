@@ -34,9 +34,9 @@ A collection with any unresolved **Error**-level violations cannot be expanded o
 
 ---
 
-## Validation Rules
+## Validation Rules (To Do: Consider configurability of these e.g. "Make your own validation schema" and changing severity of each.)
 
-### Built-in Rule Categories
+### Built-in Rule Categories (To Do: Validate these further)
 
 **Required Properties**
 - Concept is missing a required property defined by the schema (e.g., LOINC Component, LOINC Property, OpenMRS Datatype)
@@ -68,11 +68,10 @@ A collection with any unresolved **Error**-level violations cannot be expanded o
 
 Rules are defined at two levels:
 - **Repository-level schema**: set in repository settings; applies to all collections/sources in the org that reference this repo
-- **Collection-level schema**: overrides or extends the repository-level schema for a specific collection
+- **Collection-level schema**: overrides or extends the repository-level schema for a specific collection (To Do: Note that this is a brand new idea - interesting! Actually this whole page is interestingly new.)
 
 Predefined schema templates:
 - OpenMRS (concept classes, datatypes, required mappings)
-- FHIR ValueSet (resource type constraints, code system requirements)
 - Custom (user-defined rules)
 
 ---
@@ -107,7 +106,7 @@ Predefined schema templates:
 
 ## Validation Report Panel
 
-Accessible from: References tab → "View all errors" banner link; also via a standalone "Validate" action in the collection action menu (⋮).
+Accessible from: References tab → "View all errors" banner link; also via a standalone "Validate" action in the collection action menu (⋮). (To Do: Change this so that it works in sources as well as collections. May be a misunderstanding here that misses how validation applies to sources and collections.)
 
 **Panel contents:**
 - Filter bar: severity (All / Error / Warning / Info), status (Unresolved / Ignored), reference type

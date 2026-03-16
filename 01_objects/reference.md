@@ -50,8 +50,8 @@ filter:
 | `/orgs/:org/sources/:source/:version/concepts/?q=...` | ⚠️ Use sparingly | Prefer expansion params for version control |
 
 ### Cascade References
-- Applied to an extensional reference via the `cascade` parameter
-- Traverses mappings from the referenced concept to gather related concepts/mappings
+- Applied to any reference via the `cascade` parameter
+- Traverses mappings from the referenced concept(s) to gather related concepts/mappings
 - Common use: collecting CIEL Q-AND-A sets and CONCEPT-SETs for OpenMRS dictionaries
 - Not FHIR-compatible; use only for non-FHIR use cases
 
@@ -70,7 +70,7 @@ References in HEAD are mutable. References in released versions are immutable.
 
 ## Business Rules
 
-### Version Consistency
+### Version Consistency (To Do: Check this against the current version locking behavior)
 - When a collection's first unversioned reference to a source (e.g., CIEL) is resolved, the resolved source version becomes the **canonical source version** for that collection
 - All subsequent unversioned references to the same source must resolve to that same canonical version
 - Adding a concept from a different version of the same source triggers a conflict warning (see `02_capabilities/manage-references.md`)
@@ -80,7 +80,7 @@ References in HEAD are mutable. References in released versions are immutable.
 - Exclusion references are evaluated after inclusion references
 - A resource excluded by one reference cannot be re-included by another
 
-### Cascade Rules
+### Cascade Rules (To Do: Add in all cascade options and parameters)
 - Internal relationships (mappings to concepts in the same source) are included with a concept by default when `cascade = "sourcemappings"`
 - External mappings (cross-source) only come over with explicit cascade configuration
 - Cascade results are returned as versionless resources tied to the relevant repo version
@@ -93,7 +93,7 @@ References in HEAD are mutable. References in released versions are immutable.
 ### Pre-validation
 - Before a new reference is auto-expanded into a HEAD collection, OCL runs pre-validation
 - Adding a concept that already exists in the collection (via cascade overlap) is a **Warning**, not an Error
-- Results summary groups: successes, warnings (e.g., duplicates), errors (e.g., resource not found)
+- Results summary groups: successes, warnings (e.g., duplicates or unresolved references), errors (e.g., validation conflicts)
 
 ---
 
@@ -117,6 +117,7 @@ In the References list:
 - Show resolved resource count (from latest expansion)
 - Show version indicator if pinned to a source version
 - Show "non-canonical version" warning badge if pinned to a version that differs from the collection's canonical source version
+(To Do: Describe behavior for viewing in-list summary of resolved concepts/mappings that are grouped)
 
 In Reference detail / preview:
 - Show full expression

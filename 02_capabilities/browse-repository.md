@@ -27,7 +27,7 @@ At all times when browsing a repository, a **version context** is active. This c
 ## Concepts Tab
 
 ### List View
-- Table columns: Name | ID | Concept Class | Repository (if collection context) | Source | Updated
+- Table columns: Name | ID | Concept Class | Datatype | Repository (if collection context) | Updated
 - Default sort: ID ascending (when browsing, no query) or Score descending (when a search query is active)
 - Clicking a row opens the Split View
 - Multiple selection: checkbox column (shown on hover/keyboard focus); used for bulk actions (Add to Collection, Compare)
@@ -71,7 +71,7 @@ See `02_capabilities/manage-references.md` for full reference management spec.
 
 ### Browse Behavior
 - References tab shows the reference definitions (not the resolved expansion content)
-- To see the expanded content, use the Concepts or Mappings tabs (which show expansion results)
+- To see the expanded content, use the Concepts or Mappings tabs (which show expansion results) # To Do: Consider consolidated Concepts/Mappings tab that displays them concurrently. Concepts/mappings views may be separately enabled?
 - Or use the Versions + Expansions tab to browse a specific expansion
 
 ---
@@ -129,6 +129,6 @@ Always visible while browsing:
 | Situation | Message |
 |---|---|
 | No concepts in source | "No concepts yet. [Add Concept] to get started." (owners only see CTA) |
-| No concepts matching filters | "No concepts match your current filters. [Clear filters]" |
+| No concepts matching filters | "No concepts match your current filters. [Clear filters]" | # "Include retired" as a CTA if applicable 
 | No released versions | "No released versions. [Create Version] to publish your content." (owners) |
 | No references defined | "This collection has no references. [Add reference] to define what content to include." (owners) |

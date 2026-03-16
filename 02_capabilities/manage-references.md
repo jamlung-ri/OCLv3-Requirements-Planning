@@ -1,5 +1,7 @@
 # Capability: Manage References
 
+(To Do: Represent bulk-adding concepts to collection via concept ID(s) from a particular source/collection)
+
 ## Scope
 
 This capability covers all ways a user can define what content belongs in a collection: adding references from outside the collection context (e.g., from search results or concept detail), creating references from inside the collection, previewing reference results without saving, tracing a concept back to the reference that brought it in, transforming existing references, and removing references.
@@ -81,7 +83,7 @@ Users can evaluate what a reference would resolve to before committing it. This 
 - Grouped by: ✅ New (not yet in collection) | ⚠️ Already exists (would be duplicate) | ❌ Error (not resolvable)
 - Summary counts shown at the top: "X new concepts, Y already in collection, Z errors"
 - Individual rows are not selectable; this is a read-only preview
-- For large result sets (>100 resources), preview shows the first 100 with "and X more" indicator; full count is shown
+- For large result sets (>100 resources), preview shows the first 100 with "and X more" indicator; full count is shown 
 
 ---
 
@@ -103,9 +105,9 @@ Users can evaluate what a reference would resolve to before committing it. This 
 
 ## Reference Transforms (HEAD Only)
 
-Transforms change a reference's expression type without changing the content it resolves to. Only available on the HEAD version.
+Transforms change a reference's expression type without changing the content it resolves to. Only available on the HEAD version. Note that this is distinct from Cascade's Transform option.
 
-### Available Transforms (per SOW)
+### Available Transforms (per SOW) (To Do: Consider Transform action for updating the version that a repo-versioned reference points to)
 1. **Transform to Unversioned** — Changes a resource-versioned reference to an unversioned reference
    - `/:owner/sources/:source/concepts/:id/:resourceVersion/` → `/:owner/sources/:source/concepts/:id/`
    - Use when: cleaning up deprecated resource-versioned references
@@ -120,7 +122,7 @@ Transforms change a reference's expression type without changing the content it 
 - Transform actions available from the reference row action menu (⋮) in the References tab
 - Transform 1 and 2 only available on references that are currently resource-versioned (deprecated pattern)
 - Transform 3 only available on unversioned references
-- Before applying: show preview of the new expression and what it will resolve to
+- Before applying: show preview of the new expression and what it will resolve to (To Do: Add in ability to compare against previous reference expression)
 - After applying: confirmation toast; reference row updates immediately; re-expansion queued
 
 ### Bulk Transform
@@ -139,7 +141,7 @@ Transforms change a reference's expression type without changing the content it 
 
 ---
 
-## Linked Source: Resolve to HEAD During Updates
+## Linked Source: Resolve to HEAD During Updates (To Do: Figure out if this refers to updating from a source that I own vs. a source that I do not own)
 
 When a collection is being updated (typically after a new CIEL version is released):
 - Unversioned references that previously resolved to a released version now need to be evaluated against HEAD of the source (to pick up new content) and then locked again when a new collection version is created

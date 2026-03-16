@@ -41,9 +41,9 @@ Side-by-side comparison of any two OCL resources: concepts, mappings, repository
 - Attempting to add a concept when a version is already queued: show inline message "Replace the current comparison with this concept?" with Yes/No
 - When 2 items are queued, clicking "Add to Comparison" replaces the oldest item
 
-### Version Selector (for Concepts in Comparison)
-- When comparing two concepts, a version selector dropdown appears above each column
-- Allows the user to compare the same concept at two different versions (e.g., CIEL v2023 vs. CIEL v2024)
+### Version Selector (for Concepts/Mappings in Comparison)
+- When comparing two concepts or mappings, a version selector dropdown appears above each column
+- Allows the user to compare the same concept/mapping at two different versions (e.g., CIEL v2023 vs. CIEL v2024)
 - Default: current version context
 
 ---
@@ -74,7 +74,7 @@ Side-by-side comparison of any two OCL resources: concepts, mappings, repository
 | **Parameters** (expansions) | Repo versions, filters | Same |
 | **Content diff** | Concepts only in this version | Concepts only in the other version |
 
-- Summary statistics: "X concepts in common, Y only in left, Z only in right"
+- Summary statistics: "X concepts in common, Y only in left, Z only in right"  
 - Content diff is browsable (paginated list within the drawer)
 
 ---
@@ -95,7 +95,7 @@ The comparison drawer is not read-only. Contextually appropriate actions are ava
 ## Link Sharing
 
 - The comparison state is reflected in the URL as query parameters: `?compare=[url1]&compare=[url2]`
-- Sharing the URL opens TBv3 with the drawer pre-loaded showing those two items
+- Sharing the URL opens TBv3 with the drawer pre-loaded showing those two items, with repository in focus behind the drawer if available
 - If either item is not accessible to the viewer (e.g., private repo), a graceful error is shown in that column
 
 ---
