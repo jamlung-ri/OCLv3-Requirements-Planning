@@ -1,4 +1,4 @@
-# Architecture Decision Records
+# Architecture Decision Records  (To Do: Have Jon review, and have AI add additional architecture decisions based on To Dos)
 
 ---
 
@@ -25,7 +25,7 @@ Organize requirements into four layers:
 
 ## ADR-002: Comparison Tool as Bottom Drawer
 
-**Status:** Accepted
+**Status:** Pending
 
 **Context:**  
 Users need to compare two concepts or two version expansions without losing their current navigation context. A modal blocks interaction. A new page loses context entirely. A side-panel would compete with the existing split view.
@@ -43,7 +43,7 @@ Implement comparison as a bottom drawer that slides up from the bottom edge of t
 
 ## ADR-003: Version Locking Strategy for Collections
 
-**Status:** Accepted (July 2025)
+**Status:** Accepted
 
 **Context:**  
 Collections using unversioned references to CIEL (e.g., `/orgs/CIEL/sources/CIEL/concepts/1234/`) resolve to different content depending on which version of CIEL is current at the time of expansion. This means a collection's expansion can silently change content when CIEL releases a new version, without the collection owner being aware. This creates clinical safety risks for implementations that assume terminology is stable.
@@ -91,7 +91,7 @@ Existing resource-versioned references can be viewed and transformed, but not cr
 
 ## ADR-005: Default Repository Version on Navigation
 
-**Status:** Accepted
+**Status:** Pending
 
 **Context:**  
 When a user navigates to a repository URL without specifying a version, which version should TBv3 show? Showing HEAD is confusing for most users (who want to see stable, published content). Showing a non-current released version is also confusing.
@@ -107,7 +107,7 @@ This must be implemented as a server-side redirect (or client-side routing redir
 **Consequences:**
 - Users immediately see stable content, not in-progress drafts
 - Deep links always include the version, making them stable and shareable
-- Owners editing HEAD must explicitly switch to HEAD in the version dropdown
+- Owners editing HEAD must explicitly switch to HEAD in the version dropdown (To Do: Suggest a new approach to this, which is to "Edit" the repository which brings the user to HEAD)
 - The version dropdown must show HEAD at the bottom in a visually distinct style
 
 ---

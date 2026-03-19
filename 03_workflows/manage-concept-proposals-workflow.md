@@ -19,18 +19,18 @@ Covers the full lifecycle of a concept proposal — from a community member iden
 ## Entry Conditions
 
 - Proposer: authenticated; has read access to the target source
-- Reviewer: authenticated; is an owner or editor of the target source
+- Reviewer: authenticated; is an owner or editor of the target source and has enabled concept proposals for the source
 
 ---
 
-## Part 1: Submitting a Proposal (Proposer)
+## Part 1: Submitting a Proposal (Proposer) 
 
 ### Scenario: A concept is missing from CIEL
 
 1. User is building a dictionary and cannot find the concept they need in CIEL
 2. From search results: "No results for [term]" → "Propose this concept to CIEL" CTA
    - Or: from CIEL source page → "Propose New Concept" button
-3. Proposal form opens (see `02_capabilities/manage-concept-proposals.md` for form spec)
+3. Proposal form opens (see `02_capabilities/manage-concept-proposals.md` for form spec) (To Do: Add in OCL-supported $match operation to help user find potential concepts, different search methods, etc.)
 4. User fills in:
    - Concept Class, Datatype (from CIEL's configured dropdowns)
    - At least one name (Fully Specified in their locale)
@@ -42,7 +42,7 @@ Covers the full lifecycle of a concept proposal — from a community member iden
 
 ### Scenario: An existing concept needs correction
 
-1. User finds a concept in CIEL with an incorrect name, wrong concept class, or missing mapping
+1. User finds a concept in CIEL with an incorrect name, wrong concept class, missing translation, or missing mapping
 2. Concept detail → action menu → "Propose Edit"
 3. Form shows current values; user edits only the fields to change
 4. User provides a reason (required for edits)
@@ -63,7 +63,7 @@ Covers the full lifecycle of a concept proposal — from a community member iden
 - Source → "Concept Proposals" tab (badge showing pending count)
 - Notification: "N new concept proposals for [Source]"
 
-### Review Flow
+### Review Flow (To Do: Add a way to group similar proposals to help reduce duplication)
 
 1. Open proposal queue; filter by status = Submitted or In Review
 2. Click a proposal to open detail view
@@ -74,14 +74,14 @@ Covers the full lifecycle of a concept proposal — from a community member iden
    - If ready: Approve or Reject
 4. For **Edit Concept**:
    - Side-by-side diff: current vs. proposed
-   - Admin may modify the proposed values before approving
+   - Admin may modify the proposed values before approving or make comments to the proposer
    - Approve or Reject
 5. For **Retire Concept**:
    - See impact summary (N collections reference this)
    - Approve (concept retired in HEAD) or Reject
 
-### On Approval
-- Concept is created or updated in source HEAD automatically
+### On Approval (To Do: Reviewer can add Approval reason/comment if desired)
+- Concept is created or updated in source HEAD automatically 
 - Proposer notified: "Your concept proposal was approved"
 - Proposal status: Approved; link to new/updated concept shown
 

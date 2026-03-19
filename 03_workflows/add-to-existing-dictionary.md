@@ -43,7 +43,7 @@ Same as Build workflow step 3. Version consistency warning applies if the user i
 - "This concept is from CIEL HEAD, but your collection uses CIEL v2024-08-01."
 - Options:
   - "Add as unversioned (recommended) — will resolve to v2024-08-01"
-  - "Add versioned to HEAD — not recommended; may cause inconsistency"
+  - "Add versioned to HEAD — not recommended; may cause inconsistency" (To Do: Since we likely won't allow HEAD references for CIEL, this idea probably needs to be removed from this documentation)
   - "Cancel"
 
 ---
@@ -85,4 +85,4 @@ If this is a minor addition (pre-release iteration), the user may defer version 
 | Canonical source version | Not yet established; set on first add | Already established; must respect |
 | Version consistency warnings | Not applicable on first add | Active for every add |
 | Collection structure | Created from scratch | Existing structure preserved |
-| Version creation | Required to go live | Optional; may batch multiple additions into one version |
+| Version creation | Required to go live (To Do: Not required to go live since users have HEAD and begin working from there) | Optional; may batch multiple additions into one version |

@@ -56,13 +56,13 @@ A Terminology Publisher (TP) creates and maintains a canonical source of concept
 2. Select map type (e.g., SAME-AS SNOMED CT)
 3. If mapping to an internal OCL concept: search and select
 4. If mapping to an external code: enter code and source manually
-5. For Q-AND-A / CONCEPT-SET: set sort weight to control answer order
+5. For Q-AND-A / CONCEPT-SET: set sort weight by rearranging mappings to control answer order
 
 #### Editing Existing Concepts
 1. Find concept via search or browse
 2. Concept detail → "Edit"
 3. Update any fields (not the ID)
-4. Save → new resource version created; history preserved
+4. Save → new resource version created; history preserved, update comment provided
 
 #### Retiring Concepts
 1. Concept detail → action menu → "Retire"
@@ -89,9 +89,6 @@ Before creating a version, the publisher verifies content quality:
 2. **Spot-check via Search**:
    - Search for a representative set of concepts
    - Verify display names, concept classes, and mappings look correct
-
-3. **Cross-reference check** (optional):
-   - Use the Comparison Tool to compare a selection of concepts between this source and an external standard
 
 ---
 
@@ -135,4 +132,4 @@ After release, the cycle continues:
 | Duplicate concept ID | Blocked at save with inline error; user must choose a different ID |
 | Schema validation error on release | Block release; show list of errors with "Fix Now" links |
 | Concept proposal approved that creates duplicate | System detects duplicate ID; admin prompted to assign a different ID |
-| Source has no Canonical URL | Can still be used within OCL; warning shown that FHIR endpoints will not be available |
+| Source has no Canonical URL | Can still be used within OCL; warning shown that FHIR endpoints will not be available (To Do: Canonical URLs are recommended to use - need to encourage users to use it if possib le)|

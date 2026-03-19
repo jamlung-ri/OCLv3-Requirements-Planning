@@ -1,10 +1,10 @@
-# Surface: Concept Detail
+# Surface: Concept Detail (To Do: Review this against current v3 implentation and designs - Joe to provide documentation)
 
 ## Overview
 
 The Concept Detail view is the most frequently used and highest-value surface in TBv3. It appears in two contexts:
 1. **Split View** — opens to the right of a list (search results, repo browser); list remains interactive
-2. **Full Page** — navigated to directly via URL or "Open in full page" from split view
+2. **Full Page** — navigated to directly via URL or "Open in full page" from split view (To Do: Remove all Full Page options? We currently do Split View only.)
 
 Both contexts show the same content; split view condenses secondary panels as space allows.
 

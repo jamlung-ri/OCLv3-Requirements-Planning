@@ -73,7 +73,7 @@ Notification content:
 - Each row: Concept chip (name + ID) | Change type (Added / Retired / Modified)
 - "Added" concepts: checkboxes (user can deselect concepts they do NOT want to accept)
 - "Retired" concepts: warnings (user decides how to handle — remove from collection or retain as-is)
-- "Modified" concepts: side-by-side diff of what changed (names, mappings, class, datatype)
+- "Modified" concepts: side-by-side diff of what changed (names, mappings, class, datatype) (To Do: Add in some sort of tailored view of modified concepts that are in the collection already)
 
 **Key design principle:** The user must feel in control. They are not blindly accepting everything — they are reviewing and making informed decisions.
 
@@ -83,7 +83,7 @@ Notification content:
 
 User decisions per change type:
 
-**For Added concepts:**
+**For Added concepts:** (To Do: Note that it will not be common to accept most of CIEL's added concepts. It's relatively rare that someone will be adding the concepts that CIEL releases since many collections are use case-specific.)
 - Default: accept all (checkboxes checked)
 - User may uncheck individual concepts to exclude them
 - Bulk: "Deselect all" / "Reselect all"
@@ -91,7 +91,7 @@ User decisions per change type:
 **For Retired concepts:**
 - Three options per concept (or bulk):
   - **Remove from my collection** — deletes the reference; this concept will not appear in next version
-  - **Keep in my collection** — retains the reference; the concept will appear as "Retired" in the expansion
+  - **Keep in my collection** — retains the reference; the concept will appear as "Retired" in the expansion (To Do: Add option for user to lock the reference to a specific CIEL version where the concept is not retired)
   - **Review later** — flag for follow-up; treated as "Keep" for now but added to a to-do list
 
 **For Modified concepts:**
@@ -152,6 +152,5 @@ When satisfied:
 |---|---|
 | CIEL new version has no changes relevant to this collection | Notification is shown with "No content in your collection changed in the new CIEL version. You may still update your canonical version." |
 | User dismisses notification without acting | Notification persists in notification center; banner remains on collection page |
-| HEAD collection has uncommitted changes | Warn user before applying update; offer to show what changed in HEAD first |
 | Expansion computation fails after applying changes | Error shown; Rebuild button available; does not roll back the reference changes |
-| Multiple source updates pending | Each source is shown as a separate update flow; the collection may batch all into one new version at the end |
+| Multiple source updates pending | Each source is shown as a separate update flow; the collection may batch all into one new version at the end | (To Do: Consider the update process here - does the user need to update from v1 --> v2 --> v3 --> v4, or can they squash the versions to go directly from v1 --> v4?)

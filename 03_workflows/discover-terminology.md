@@ -82,7 +82,7 @@ The concept detail view must surface all of this without requiring navigation.
 2. Views About tab for context and intended use
 3. Views Concepts tab to browse content
 4. Checks Versions + Expansions tab to see what versions are available
-5. May compare two versions to see what changed
+5. May compare two versions or expansions to see what changed
 
 ---
 
