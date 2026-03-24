@@ -82,7 +82,26 @@ Only Source owners and editors can use this capability directly. Terminology Imp
 
 ### After Save
 - Mapping appears immediately in the concept's Associations panel
-- No page reload required
+- No page reload required; scroll position and focus move to the new mapping row
+
+---
+
+## Retiring a Mapping
+
+### Entry Points
+- Concept detail view → Associations panel → three-dot context menu on a mapping row → "Retire Mapping"
+- Mapping detail page → action menu → "Retire Mapping"
+
+### Retire Flow
+1. User selects "Retire Mapping" from the context menu
+2. A text field appears for an optional retirement reason
+3. User confirms; the mapping is retired in the HEAD version
+4. The Associations panel updates in place — the mapping row shows a Retired badge
+5. Scroll position and focus are preserved on the retired row (page does not scroll to top)
+
+### Un-retiring a Mapping
+- Un-retire is available via the same context menu on a retired mapping row ("Un-retire Mapping")
+- No reason field required for un-retire; confirmation required
 
 ---
 

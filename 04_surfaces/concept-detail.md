@@ -95,8 +95,32 @@ Section header: "Associations" + count (e.g., "Associations (12)")
   - Map type badge (colored by type)
   - Target concept: clickable Object Chip if internal OCL concept; text code + source name if external
   - Sort weight (shown only if non-null and relevant)
+  - Three-dot context menu (owners/editors only; HEAD version only): "Open From Concept" | "Open To Concept" | "Compare Concepts" | "Retire Mapping"
 - Table styling: no internal vertical borders (consistent with Names styling)
+
 - Do not show if no mappings
+- Map type group headers are sticky during scroll within long lists
+- "Add Mapping" button appears at both the top and bottom of the panel (not only at the bottom)
+- No max-height constraint on this panel; it expands to its natural height to avoid multiple nested scrollbars on the page
+
+### Retire Mapping from Associations Panel
+
+- Triggered via the three-dot context menu → "Retire Mapping" on a mapping row
+- A text field for a retirement reason is shown (optional, but the confirmation step is always required)
+- On confirm: the mapping is retired in place; the panel updates without a full page reload; scroll position and focus are preserved on the retired row (now showing a Retired badge)
+- Mirrors the behavior of the standalone mapping details page
+
+### Scroll and Focus Preservation
+
+- After any create, edit, or retire action on a mapping in the Associations panel, the panel must return focus to the affected row and preserve scroll position
+- The page must not scroll to the top after these operations
+
+### Performance
+
+- The Associations panel must load asynchronously and independently of other concept detail panels
+- Skeleton loading must be shown while associations are fetching
+- Target: associations for concepts with 400+ mappings must load in under 3 seconds (requires query optimization or API-level indexing)
+- See also: ocl_issues#2131
 
 ---
 

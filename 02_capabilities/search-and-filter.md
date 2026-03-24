@@ -33,7 +33,7 @@ This capability covers all search entry points: global search (full-page results
 
 | Column | Notes |
 |---|---|
-| Concept Name | Bold; search term highlighted (match only — not other words that happen to contain the letters) |
+| Concept Name | Bold; search term highlighted (match only — not other words that happen to contain the letters); only the actually-matching characters within a word are highlighted, not the whole word (e.g., if "arburg" matches, only "arburg" is bolded in "Warburg", not the full word) — see ocl_issues#1937 |
 | Concept Class | |
 | Datatype | Hide from main view if N/A in >50% of results; available as filter-in option |
 | Repository | Chip linking to the source; never wraps to second line | (To Do: Ensure Repository is shown as a chip with version and owner displayed)

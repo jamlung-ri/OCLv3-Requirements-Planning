@@ -36,6 +36,7 @@ This library is the authoritative source for TBv3 requirements. It is structured
   update-collection-source-version.md
   author-and-publish-source.md
   manage-concept-proposals-workflow.md
+  clean-references-and-expansions.md
 
 04_surfaces/          ← Page and component-level UI specs
   concept-detail.md

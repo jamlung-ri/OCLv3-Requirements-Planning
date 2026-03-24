@@ -83,6 +83,8 @@ Allowed map types are configured per repository via `dropdown_config.map_type`.
 - Soft-deleted; preserved in version history
 - Excluded from active expansions by default (respects `active_only` expansion parameter)
 - Still visible in concept detail Associations panel with a Retired badge
+- A retirement reason (free-text, optional) can be recorded at the time of retirement; stored in the mapping version record
+- Retirement can be initiated from the Associations panel context menu or from the mapping detail page
 
 ### Mapping Display in Concept Detail
 - In a concept's detail view, show mappings in the **Associations** panel

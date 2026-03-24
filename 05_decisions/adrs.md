@@ -1,4 +1,4 @@
-# Architecture Decision Records  (To Do: Have Jon review, and have AI add additional architecture decisions based on To Dos)
+# Architecture Decision Records  (To Do: Have Jon review, and have AI add additional architecture decisions based on To Dos e.g. Canonical URLs and Linked Source)
 
 ---
 
@@ -42,6 +42,7 @@ Implement comparison as a bottom drawer that slides up from the bottom edge of t
 ---
 
 ## ADR-003: Version Locking Strategy for Collections
+Note: Current UI exposes basic information, but it isn't made intelligent and intuitive for users.
 
 **Status:** Accepted
 

@@ -1,4 +1,4 @@
-# Surface: Versions + Expansions Tab (To Do: Review this against current v3 implentation and designs - Joe to provide documentation)
+# Surface: Versions + Expansions Tab (To Do: Review this against current v3 implentation and designs - Joe to provide documentation, especially related to exposing Version Locking information)
 
 ## Scope
 

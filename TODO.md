@@ -1,5 +1,10 @@
 # Requirements To Do Tracker
 
+Suggestions from Jon:
+* Separate between documentation and planning very clearly - there will be aspects that are an MVP feature for v3 vs. how we intend to get to the full feature over time. Documentation is immediate, solid, and actionable. Planning is fluid, ambitious, but generally on hold. 
+   * Example: Canonical URL requirements will touch everything. Building the approach out should be done without hitting the documentation badly. Planning will require documents, specs, etc.
+* Consider: After refining this documentation, supplement the human walkthrough of OCLv3 with some way of Claude actually visualizing Oclv3 on its own.
+
 This file consolidates every `To Do` comment found across the requirements repository as of commit `54e9107` (March 19, 2026). Each item is categorized by priority, file location, and recommended action type.
 
 ---
@@ -19,7 +24,7 @@ These are open questions or blank sections that could affect implementation scop
 ### Open Architectural / Design Decisions
 
 - [ ] **`DECIDE`** `03_workflows/build-concept-dictionary.md` — **HEAD references in collections (Linked Sources concept):** OCL currently only allows adding concepts from *released* source versions to a collection. Collection managers who also own the source need a way to reference HEAD content. Options: enable HEAD-resolution for sources the user owns, a "Linked Source" pattern, or a working collection concept. Has scope and data model implications.
-  - *Related:* `02_capabilities/manage-references.md` (Resolve to HEAD During Updates section)
+  - [ ] **`DECIDE`** `02_capabilities/manage-references.md` — **Resolve to HEAD — own vs. not-own source:** Clarify whether HEAD-resolution during updates applies only to sources the user owns, or also to sources they do not own (e.g., CIEL).
 
 - [ ] **`DECIDE`** `03_workflows/update-collection-source-version.md` — **Version squashing:** When a source goes v1 → v2 → v3 → v4, does the collection update workflow require stepping through each intermediate version, or can the user squash and go directly v1 → v4? Affects workflow UX and diff computation logic.
 
@@ -43,7 +48,7 @@ These are open questions or blank sections that could affect implementation scop
 
 - [ ] **`VERIFY`** `01_objects/reference.md` — **Version consistency rules:** Cross-check the "canonical source version" locking behavior against OCLv2's current implementation and ADR-003. Resolve any discrepancies before dev handoff.
 
-- [ ] **`DECIDE`** `02_capabilities/manage-references.md` — **Resolve to HEAD — own vs. not-own source:** Clarify whether HEAD-resolution during updates applies only to sources the user owns, or also to sources they do not own (e.g., CIEL).
+
 
 ---
 
