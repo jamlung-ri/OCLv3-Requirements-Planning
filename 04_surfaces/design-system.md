@@ -19,6 +19,9 @@ Core visual and interaction conventions for TBv3. All surfaces must follow these
 └──────────┴─────────────────────────────────────────────────┘
                                                    ▲
                                Comparison Bar (fixed bottom, only when active)
+To Do: Change Global Search Bar to searchlite?
+To Do: Note that Left Nav panel collapses
+To Do: Add collapsible right nav options 
 ```
 
 ### Left Navigation Panel
