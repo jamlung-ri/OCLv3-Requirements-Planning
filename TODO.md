@@ -51,25 +51,11 @@ These items have been explicitly called out as needing focused design time — n
 
 _Recommend handling as part of the dedicated Add Reference / Cascade session above._
 
-- [x] **`WRITE`** `01_objects/reference.md` — **All cascade options and parameters:** Documented four presets (None, Source to Mappings, Source to Concepts/OpenMRS, Source to Concepts + OpenMRS Transform, Custom) with full parameter table (`method`, `map_types`, `cascade_levels`, `return_map_types`, `transform`). ✅ 2026-03-27
-
-- [x] **`WRITE`** `01_objects/reference.md` — **In-list summary for grouped resolved resources:** Documented collapsible ▶ rows, concept/mapping grouping, orphaned mappings, two-tab detail panel (Reference details + View expansion), repository chip with tooltip, expansion selection context. ✅ 2026-03-27
-
-### OCLv2 Behavior Documentation
-
-- [x] **`VERIFY`** `02_capabilities/author-concept.md` — **OCLv2 Add Mapping behavior:** Search-then-fallback model documented: code field triggers source search; match auto-populates Name+Source; no match unlocks free-text entry. v3 design intent (explicit toggle) documented alongside. ✅ 2026-03-27
-
-- [x] **`VERIFY`** `01_objects/concept.md` — **Business rules vs. OpenMRS validation schema:** Names section split into OCL-platform rules vs. OpenMRS-schema-specific rules. ✅ 2026-03-27
-
-- [x] **`VERIFY`** `01_objects/concept.md` — **OpenMRS Dictionary validation rules:** Full per-concept and dictionary-wide rule set integrated. Two rules flagged as not yet implemented in OCL validation. ✅ 2026-03-27
-
-- [x] **`VERIFY`** `01_objects/concept.md` — **Display name resolution algorithm:** Confirmed 5-step fallback logic matches OCLv2 behavior; To Do comment removed. ✅ 2026-03-27
 
 ### Expansion Specification
 
 - [ ] **`VERIFY`** `01_objects/expansion.md` — **Complete expansion parameters list + defaults:** Schema currently includes `active_only` (default true) and `repo_versions`. Confirm these are accurate and complete against oclapi2 implementation. Additional parameters (if any) can be added post-V3 via tbv3-knowledge-base.md.
 
-- [x] **`WRITE`** `01_objects/expansion.md` — **Expansion comparison (full spec):** Documented entry points (checkbox selection per expansion row, Compare button activates at 2+ selected), summary statistics bar (Added/Removed/Unchanged counts), concept diff list, resolved repo versions display, and unchanged-collapse-by-default behavior. ✅ 2026-03-27
 
 ### Validation Specification
 
@@ -87,9 +73,6 @@ All four surface files need a reconciliation pass against current v3 designs. Jo
 - [ ] **`VERIFY`** `04_surfaces/design-system.md` — Full design system review for accuracy and completeness.
 - [ ] **`VERIFY`** `01_objects/repository.md` — Cross-check repository header attributes and version dropdown rules against the current v3 Version design and `04_surfaces/repository-page.md`.
 
-### Remaining Content Gaps
-
-- [x] **`WRITE`** `01_objects/concept.md` + `04_surfaces/design-system.md` — **Chip spec:** Concept chip documented (short form + with-source form + tooltip). Repository chip spec documented in design-system.md (two sizes, content rules, version display, tooltip structure, table vs. inline usage). Based on ocl_issues#1776. ✅ 2026-03-27
 
 ---
 
