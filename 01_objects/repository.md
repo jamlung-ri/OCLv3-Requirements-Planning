@@ -1,7 +1,5 @@
 # Object: Repository
 
-(To Do: Add in template configuration for specific Extra attribute?)
-
 A Repository is the top-level container for terminology content. There are two subtypes: Source and Collection. They share a common schema but have meaningfully different behaviors.
 
 ## Schema
@@ -79,7 +77,9 @@ dropdown_config:
 
 ---
 
-## Repository Subtypes (To Do: Refine this to show ConceptMap as a source/collection, CodeSystem as its own subtype?)
+## Repository Subtypes
+
+> **Post-v3:** Whether ConceptMap belongs as a Source subtype, a Collection subtype, or both — and whether CodeSystem deserves a top-level repo type distinct from Source/Collection — are deferred to post-v3. The table below reflects the current v3 model. See `tbv3-knowledge-base.md`.
 
 | Repo Type | Subtype | Primary Use | FHIR Equivalent |
 |---|---|---|---|
@@ -174,7 +174,7 @@ Accessible via "View all attributes" dialog (not in header):
 - Show: repo ID, full name, repo type badge, description (truncated), concept/mapping/version count, last updated
 - Default sort: ID ascending
 
-**Repository header (detail page):** (To Do: Check this against new Version design)
+**Repository header (detail page):** _(Verify against current v3 Version design — Joe to review)_
 - See "Repository Header Attributes" above
 - Always show: current version context, version selector dropdown
 - Version dropdown: show version ID, release status, release date, visibility icon — do NOT wrap

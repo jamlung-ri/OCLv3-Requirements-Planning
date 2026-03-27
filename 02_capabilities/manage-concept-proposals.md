@@ -28,6 +28,7 @@ Identical to the concept creation form (`02_capabilities/author-concept.md`) wit
 - A **Mappings** section is available but labeled "Supporting Mappings (informational)" — these are not created automatically; the admin decides during review
 - Concept ID may be left blank ("Assign automatically" option) - appears only if source admins enable manual ID generation i.e. no ID auto-assignment
 - Submit button: "Submit Proposal" (not "Save Concept")
+> **Post-v3:** Add support for in-the-moment $match on the new concept proposal to see if there are any existing concepts that are similar to what the user is proposing (e.g. if the proposer did not search with the right terms to find an existing concept)
 
 ### Edit Concept Proposal Form
 
@@ -62,10 +63,14 @@ Identical to the concept creation form (`02_capabilities/author-concept.md`) wit
 - Proposed concept details
 - Comment thread (proposer can add comments at any time)
 - Withdraw button (available until Approved or Rejected)
-(To Do: Add action for Approved proposals to be Added to Collection, Cloned, etc.)
+
+> **Post-v3:** Post-approval actions for the proposer — such as viewing the newly created concept, adding it directly to a collection, or cloning it — are deferred to post-v3. See `tbv3-knowledge-base.md`.
+
 ---
 
-## Managing Proposals (Source Administrator View) (To Do: Explore idea of public-facing Proposal view for non-admins to see/add to/endorse existing proposals)
+## Managing Proposals (Source Administrator View)
+
+> **Post-v3:** A public-facing proposal view (allowing non-admins to see, endorse, or upvote existing proposals) is deferred to post-v3. See `tbv3-knowledge-base.md`.
 
 ### Entry Point
 - Source repository → "Concept Proposals" tab

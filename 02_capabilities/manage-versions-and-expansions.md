@@ -17,10 +17,10 @@ This tab is only fully functional for Collections (per SOW). For Sources, the Ve
 ### Versions + Expansions Tab Layout (Collections)
 
 Two-panel layout within the tab:
-- **Left panel**: List of all versions (including HEAD)
-- **Right panel**: Expansions for the selected version
+- **Left panel**: List of all versions (including HEAD) — versions are the primary element; each version row shows its status, whether it has expansions, and which expansion is the default
+- **Right panel**: Expansions for the selected version — expansions are children of the selected version; the panel shows all expansions for that version with their parameters and resolved repo versions
 
-Selecting a version in the left panel updates the right panel to show that version's expansions. (To Do: Consider if we should continue using OCLv2's way of showing all expansions for each version)
+Selecting a version in the left panel updates the right panel to show that version's expansions. Each version row should make it clear when an expansion exists and which one is in use — expansions should not be hidden, but versions remain at the forefront of the UI.
 
 See `04_surfaces/versions-expansions-tab.md` for the full layout specification.
 
@@ -37,10 +37,11 @@ See `04_surfaces/versions-expansions-tab.md` for the full layout specification.
    - **Version ID**: text input (e.g., "v2024-01-15"); validated for uniqueness within the repo
    - **Description**: textarea for release notes
    - **Released**: checkbox (default: unchecked — creates as Draft first)
+   - **Expansion behavior** (Collections only): radio — "Copy current HEAD expansion as-is (default)" | "Re-evaluate all references now"
 2. On submit:
-   - For Collections: also creates the **auto-expansion** (async); progress indicator shown while it computes
-   - For Sources: creates a snapshot of HEAD; HEAD continues as a working copy
-3. Success: new version appears in the list; if collection, expansion shows as "Processing" (To Do: Add Processing State for Source creation due to indexing and export generation)
+   - For Collections: creates the **auto-expansion** using the selected behavior (async); progress indicator shown while it computes
+   - For Sources: creates a snapshot of HEAD; HEAD continues as a working copy; indexing and export generation run asynchronously and are shown as a processing state in the version row
+3. Success: new version appears in the list; if collection, expansion shows as "Processing" until complete
 
 ### Releasing a Draft Version
 - Draft versions have a "Release" action button in the version list

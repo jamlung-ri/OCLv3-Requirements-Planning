@@ -18,8 +18,8 @@ Covers the full lifecycle of a concept proposal — from a community member iden
 
 ## Entry Conditions
 
-- Proposer: authenticated; has read access to the target source
-- Reviewer: authenticated; is an owner or editor of the target source and has enabled concept proposals for the source
+- Proposer: authenticated; has read access to the target source; concept proposals must be enabled by the source admin for that source
+- Reviewer: authenticated; is an owner or editor of the target source; has enabled concept proposals for the source in source settings
 
 ---
 
@@ -30,7 +30,7 @@ Covers the full lifecycle of a concept proposal — from a community member iden
 1. User is building a dictionary and cannot find the concept they need in CIEL
 2. From search results: "No results for [term]" → "Propose this concept to CIEL" CTA
    - Or: from CIEL source page → "Propose New Concept" button
-3. Proposal form opens (see `02_capabilities/manage-concept-proposals.md` for form spec) (To Do: Add in OCL-supported $match operation to help user find potential concepts, different search methods, etc.)
+3. Proposal form opens (see `02_capabilities/manage-concept-proposals.md` for form spec)
 4. User fills in:
    - Concept Class, Datatype (from CIEL's configured dropdowns)
    - At least one name (Fully Specified in their locale)
@@ -63,7 +63,7 @@ Covers the full lifecycle of a concept proposal — from a community member iden
 - Source → "Concept Proposals" tab (badge showing pending count)
 - Notification: "N new concept proposals for [Source]"
 
-### Review Flow (To Do: Add a way to group similar proposals to help reduce duplication)
+### Review Flow
 
 1. Open proposal queue; filter by status = Submitted or In Review
 2. Click a proposal to open detail view
@@ -80,10 +80,12 @@ Covers the full lifecycle of a concept proposal — from a community member iden
    - See impact summary (N collections reference this)
    - Approve (concept retired in HEAD) or Reject
 
-### On Approval (To Do: Reviewer can add Approval reason/comment if desired)
-- Concept is created or updated in source HEAD automatically 
-- Proposer notified: "Your concept proposal was approved"
-- Proposal status: Approved; link to new/updated concept shown
+### On Approval
+- Reviewer may optionally include an approval comment (free text) in the confirmation dialog — this appears in the proposal's discussion thread
+- Concept is created or updated in source HEAD automatically
+- If the admin edited the proposed concept before approving, the notification reads: "Your concept proposal was approved with edits"
+- Proposer notified with a link to the new/updated concept
+- Proposal status: Approved; link to new/updated concept shown on the proposal detail page
 
 ### On Rejection
 - Admin must enter a rejection reason (appears as a comment)

@@ -18,7 +18,6 @@ mapping:
   from_source_url: string       # URL of the from-concept's source
   Future: canonical_URL         # source's canonical URL
 
-(To Do: Verify rules for Mapping From/To concepts e.g. field combinations.)
 
   # To (may be internal OCL concept or external code)
   to_concept_url: string?       # Set if the target is an OCL concept
@@ -64,11 +63,31 @@ Allowed map types are configured per repository via `dropdown_config.map_type`.
 
 ---
 
-## Internal vs. External Mappings (To Do: Add in the distinction for within-source Internal mapping e.g. Q&A mappings (unsure how we should classify this - within a source, within ownership, etc.))
+## Mapping Target Types
 
-**Internal mapping:** `to_concept_url` points to a concept in the same OCL instance. The target concept can be resolved and its details shown inline.
+Mappings fall into three categories based on where the target concept lives:
 
-**External mapping:** `to_concept_url` is null; `to_source_url` points to a code system outside OCL (e.g., SNOMED CT, ICD-10). The target cannot be resolved within OCL; only the code and source name are shown.
+**Within-source mappings:** Both the `from` and `to` concepts are in the same source. Used for Q-AND-A and CONCEPT-SET relationships (e.g., a coded question concept mapped to its answer concepts within CIEL). The `to_concept_url` points to a concept in the same source as the mapping. See [ocl_issues#1972](https://github.com/OpenConceptLab/ocl_issues/issues/1972) for additional detail.
+
+**Cross-source OCL mappings:** The `to` concept lives in a different OCL source (e.g., CIEL → SNOMED via an OCL-hosted SNOMED mirror). `to_concept_url` points to a concept in a different source within the same OCL instance. The target can be resolved and its details shown inline.
+
+**External code system mappings:** The target is not in OCL at all (e.g., SNOMED CT, ICD-10, LOINC hosted outside OCL). `to_concept_url` is null; `to_source_url` points to an external code system URI. The target cannot be resolved within OCL; only the code and source name are shown. Full documentation of the external code system mapping model is deferred — see `tbv3-knowledge-base.md`.
+
+---
+
+## From/To Field Combination Rules
+
+The minimum required fields for a mapping depend on the target type:
+
+| Target type | Minimum required |
+|---|---|
+| Within-source or cross-source OCL concept | `to_concept_url` (sufficient on its own; resolves the concept and infers the source) |
+| OCL concept specified by ID without full URL | `to_concept_code` + `to_source_url` (source URL provides the namespace) |
+| External code system | `to_concept_code` + `to_source_url` |
+
+Optional override: `to_concept_name` may be provided to overwrite OCL's resolved display name for the target concept — useful when the locally preferred display differs from the source's canonical name.
+
+`from_concept_url` is always required and must point to a concept in the mapping's own source.
 
 ---
 
@@ -117,7 +136,7 @@ Allowed map types are configured per repository via `dropdown_config.map_type`.
 - Table columns: ID | From Concept | Map Type | Target Concept (to_concept_code + to_source)
 - Row click opens split view with mapping detail
 - Resolvable concepts appear as a clickable chip that opens the concept's detail view 
-- Filtering: by map_type, from/to source, retired status (To Do: add other filters)
+- Filtering: by map_type, from/to source, retired status, from/to source owner, updated by (user), updated since (date)
 - Retired mappings hidden by default, toggle filters to show
 
 **Mapping detail (split view):**

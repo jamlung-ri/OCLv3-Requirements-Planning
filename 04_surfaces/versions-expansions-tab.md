@@ -1,4 +1,6 @@
-# Surface: Versions + Expansions Tab (To Do: Review this against current v3 implentation and designs - Joe to provide documentation, especially related to exposing Version Locking information)
+# Surface: Versions + Expansions Tab
+
+> **Note:** Joe to review this against the current v3 implementation and designs, especially related to exposing Version Locking information. This doc may need reconciliation with current designs.
 
 ## Scope
 
@@ -46,8 +48,11 @@ For Sources, a simplified **Versions** tab exists (left panel only, no right pan
 |---|---|---|
 | Version ID | flex | Clickable; sets context for right panel |
 | Status badge | fixed 90px | Released / Draft / HEAD |
+| Default expansion indicator | flex | Summary chip showing the default expansion ID and its resolved repo versions (e.g., "CIEL v2024-08-01"); visible when a version has at least one expansion |
 | Stale indicator | fixed 30px | Yellow ⚠ dot if expansions are stale |
 | Actions (⋮) | fixed 32px | Context menu |
+
+The default expansion summary must be visible at the version row level — users should not need to open the right panel to know what expansion a version is using and what source versions are resolved in it.
 
 ### Version Row States
 

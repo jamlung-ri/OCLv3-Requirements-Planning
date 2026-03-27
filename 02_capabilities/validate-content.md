@@ -34,9 +34,13 @@ A collection with any unresolved **Error**-level violations cannot be expanded o
 
 ---
 
-## Validation Rules (To Do: Consider configurability of these e.g. "Make your own validation schema" and changing severity of each.)
+## Validation Rules
 
-### Built-in Rule Categories (To Do: Validate these further)
+> **Scope note:** User-defined validation schemas and per-rule severity overrides are **not in scope for v3 launch**. The v3 validation system uses a fixed set of built-in rules with predefined severity levels. Configurability is documented for post-v3 planning in `tbv3-knowledge-base.md`.
+
+### Built-in Rule Categories
+
+> **Note:** These rule categories require a VERIFY pass against the OpenMRS validation schema and FHIR CodeSystem constraints before dev handoff.
 
 **Required Properties**
 - Concept is missing a required property defined by the schema (e.g., LOINC Component, LOINC Property, OpenMRS Datatype)
@@ -106,7 +110,7 @@ Predefined schema templates:
 
 ## Validation Report Panel
 
-Accessible from: References tab → "View all errors" banner link; also via a standalone "Validate" action in the collection action menu (⋮). (To Do: Change this so that it works in sources as well as collections. May be a misunderstanding here that misses how validation applies to sources and collections.)
+Accessible from: References tab → "View all errors" banner link; also via a standalone "Validate" action in the collection action menu (⋮). This panel is currently specified for collections only. How validation applies to sources (concept/mapping authoring context) and the surface for a source-level Validation Report Panel are queued for dedicated design work in the TBv3 planning phase — see `tbv3-knowledge-base.md`.
 
 **Panel contents:**
 - Filter bar: severity (All / Error / Warning / Info), status (Unresolved / Ignored), reference type

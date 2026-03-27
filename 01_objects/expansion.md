@@ -9,7 +9,7 @@ expansion:
   id: string                    # e.g. "expansion1", "2024-01-01"
   canonical_url: string?        # Stable URL for this specific expansion
   is_default: boolean           # Whether this is the default expansion for its version
-  parameters: (To Do: Verify and fill in other potential parameters)
+  parameters:
     repo_versions: Record<sourceUrl, versionId>  # Pinned source versions
     date: date?                 # Evaluate using versions released as of this date
     filter: Filter[]?           # Additional filter criteria
@@ -48,14 +48,19 @@ All collection versions will generally have at least one **auto-expansion** crea
 
 ### Auto-Expansion
 - Created automatically when a repo version is created
-- Parameters default to: `active_only = true`, `repo_versions = {}` (use canonical source versions) # (To Do: Verify default parameters)
-- Users do not need to create a custom expansion unless they want different behavior from the auto-expansion 
+- Parameters default to: `active_only = true`, `repo_versions = {}` (use canonical source versions)
+- Users do not need to create a custom expansion unless they want different behavior from the auto-expansion
 
 ### Default Expansion
 - Each collection version has exactly one default expansion
 - The default expansion is what users see when browsing a collection version
 - The auto-expansion is the initial default; owners can change this
-- When the HEAD collection is being browsed live, the auto-expansion updates as references are added # (To Do: Ensure that the behavior for auto-expand saving resources as a version are clear here - saves the expansion as-is rather than re-evaluating references)
+- When the HEAD collection is being browsed live, the auto-expansion updates as references are added
+
+### Saving a Version: Expansion Snapshot vs. Re-Evaluation
+When a collection version is created from HEAD, the default behavior is to **copy the HEAD auto-expansion as-is** (a frozen snapshot of the current resolved state). This ensures the version reflects exactly what HEAD looked like at the moment of version creation.
+
+As an alternative, owners can elect to **re-evaluate all references** at the moment of version creation — useful when they want the new version to reflect the latest resolved content from all referenced sources rather than the snapshot. This option is surfaced as a setting in the Create Version dialog.
 
 ### Version Pinning via Parameters vs. References
 - **Preferred**: control which source versions are used via expansion parameters (`repo_versions`)
@@ -112,4 +117,8 @@ Expansion detail:
 - Show list of excluded resources
 - Allow browsing concepts/mappings within the expansion
 
-To Do: Add Information regarding expansion comparison.
+### Expansion Comparison
+
+Expansions can be compared against each other — for example, to review the diff between the current HEAD auto-expansion and a previously released version's expansion, or to compare two custom expansions with different parameters. Expansion comparison is surfaced via the comparison component (see `02_capabilities/compare-resources.md` and `05_decisions/adrs.md` ADR-002).
+
+See also: [ocl_issues#1853](https://github.com/OpenConceptLab/ocl_issues/issues/1853) for linked documentation on expansion comparison entry points, what is shown, and summary statistics.

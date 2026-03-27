@@ -83,10 +83,12 @@ Notification content:
 
 User decisions per change type:
 
-**For Added concepts:** (To Do: Note that it will not be common to accept most of CIEL's added concepts. It's relatively rare that someone will be adding the concepts that CIEL releases since many collections are use case-specific.)
-- Default: accept all (checkboxes checked)
-- User may uncheck individual concepts to exclude them
-- Bulk: "Deselect all" / "Reselect all"
+**For Added concepts:**
+- Default: **none selected** (checkboxes unchecked)
+- It is rare for a collection to want all newly added CIEL concepts. Most collections are use case-specific, and indiscriminately accepting new CIEL additions would pollute a curated dictionary. The UI must not make bulk-accept the easiest path.
+- User selects individual concepts they want to add
+- Bulk: "Select all" / "Deselect all" available, but secondary to individual selection
+- A tailored sub-view shows only CIEL concepts that were **modified and are already referenced by this collection** — this is the most actionable portion of the diff and should be prominently surfaced
 
 **For Retired concepts:**
 - Three options per concept (or bulk):
@@ -153,4 +155,4 @@ When satisfied:
 | CIEL new version has no changes relevant to this collection | Notification is shown with "No content in your collection changed in the new CIEL version. You may still update your canonical version." |
 | User dismisses notification without acting | Notification persists in notification center; banner remains on collection page |
 | Expansion computation fails after applying changes | Error shown; Rebuild button available; does not roll back the reference changes |
-| Multiple source updates pending | Each source is shown as a separate update flow; the collection may batch all into one new version at the end | (To Do: Consider the update process here - does the user need to update from v1 --> v2 --> v3 --> v4, or can they squash the versions to go directly from v1 --> v4?)
+| Multiple source updates pending | Each source is shown as a separate update flow; the collection may batch all into one new version at the end. **Version skipping is supported:** when a source has gone v1 → v2 → v3 → v4, the user may go directly from their current version (v1) to the latest (v4) without stepping through each intermediate version. |

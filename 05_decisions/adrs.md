@@ -1,4 +1,6 @@
-# Architecture Decision Records  (To Do: Have Jon review, and have AI add additional architecture decisions based on To Dos e.g. Canonical URLs and Linked Source)
+# Architecture Decision Records
+
+> **Note:** Jon to review all ADRs and add additional records for open architectural questions surfaced during requirements planning (e.g., Canonical URLs, Linked Sources). This is an ongoing document.
 
 ---
 
@@ -23,21 +25,22 @@ Organize requirements into four layers:
 
 ---
 
-## ADR-002: Comparison Tool as Bottom Drawer
+## ADR-002: Comparison Tool as an Independent Component
 
-**Status:** Pending
+**Status:** Accepted
 
-**Context:**  
-Users need to compare two concepts or two version expansions without losing their current navigation context. A modal blocks interaction. A new page loses context entirely. A side-panel would compete with the existing split view.
+**Context:**
+Users need to compare two concepts or two version expansions without losing their current navigation context. A modal blocks interaction. A new page loses context entirely. A side-panel would compete with the existing split view. Early designs proposed a fixed bottom drawer, but this constrains the comparison surface to one presentation mode.
 
-**Decision:**  
-Implement comparison as a bottom drawer that slides up from the bottom edge of the screen. The background remains fully interactive. The drawer can be minimized to a comparison bar.
+**Decision:**
+The comparison tool is an **independent component** that is not tied to any specific placement on the screen. It may be rendered as a modal, a bottom drawer, a side drawer, or a full page — depending on the context in which it is invoked and the screen space available. The component itself does not assume its container.
 
 **Consequences:**
-- Users can compare two concepts while still browsing search results
-- The comparison bar provides a persistent queue reminder
-- At minimum supported screen heights (768px), the drawer may feel constrained; this is acceptable for v3
-- Cross-server comparison remains out of scope; drawer does not need to handle remote resource loading
+- The comparison surface can be invoked from search results, concept detail, version expansions, or any other context without dictating screen layout
+- The component must be self-contained (no dependency on surrounding page state)
+- Specific placement decisions (e.g., when to use a drawer vs. a modal) are left to the design system and individual surface specs
+- Cross-server comparison remains out of scope
+- The comparison bar / queue reminder pattern from the original bottom-drawer design remains a valid implementation option but is not required
 
 ---
 
@@ -92,12 +95,12 @@ Existing resource-versioned references can be viewed and transformed, but not cr
 
 ## ADR-005: Default Repository Version on Navigation
 
-**Status:** Pending
+**Status:** Accepted
 
-**Context:**  
+**Context:**
 When a user navigates to a repository URL without specifying a version, which version should TBv3 show? Showing HEAD is confusing for most users (who want to see stable, published content). Showing a non-current released version is also confusing.
 
-**Decision:**  
+**Decision:**
 On first navigation to a repository (without a version in the URL):
 1. Redirect to the **latest released version** if one exists
 2. Redirect to the **latest non-HEAD version** (draft) if there are no released versions
@@ -108,8 +111,10 @@ This must be implemented as a server-side redirect (or client-side routing redir
 **Consequences:**
 - Users immediately see stable content, not in-progress drafts
 - Deep links always include the version, making them stable and shareable
-- Owners editing HEAD must explicitly switch to HEAD in the version dropdown (To Do: Suggest a new approach to this, which is to "Edit" the repository which brings the user to HEAD)
+- Owners editing HEAD must explicitly switch to HEAD in the version dropdown
 - The version dropdown must show HEAD at the bottom in a visually distinct style
+
+**Future (post-v3):** An explicit "Edit" mode action on the repository page — distinct from navigating the version dropdown — that switches the user directly to HEAD. This would make the editing intent explicit and reduce confusion about how to access in-progress content.
 
 ---
 

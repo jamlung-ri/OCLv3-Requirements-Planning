@@ -1,12 +1,15 @@
-# Surface: Concept Detail (To Do: Review this against current v3 implentation and designs - Joe to provide documentation)
+# Surface: Concept Detail
+
+> **Note:** Joe to review this against the current v3 implementation and designs. This doc may need reconciliation with current designs.
 
 ## Overview
 
-The Concept Detail view is the most frequently used and highest-value surface in TBv3. It appears in two contexts:
-1. **Split View** — opens to the right of a list (search results, repo browser); list remains interactive
-2. **Full Page** — navigated to directly via URL or "Open in full page" from split view (To Do: Remove all Full Page options? We currently do Split View only.)
+The Concept Detail view is the most frequently used and highest-value surface in TBv3. It is a **single independent component** that renders in two contexts:
 
-Both contexts show the same content; split view condenses secondary panels as space allows.
+1. **Split View** — the primary and default context; opens to the right of a list (search results, repo browser); list remains interactive
+2. **Full Page** — the same component rendered at a dedicated URL; accessible via deep link, bookmark, or "Open in full page" from split view. This is not a separate design — it is the split view component displayed without the surrounding list context.
+
+Both contexts show the same content; split view may condense secondary panels as space allows.
 
 ---
 
@@ -44,7 +47,7 @@ Both contexts show the same content; split view condenses secondary panels as sp
 - **Add to Collection**: all authenticated users; opens Add to Collection dialog
 - **Add to Comparison**: all users; adds concept to comparison queue
 - **Propose Edit**: authenticated non-owners; opens proposal form
-- **⋮ More**: retire, view history, open in full page, copy URL
+- **⋮ More**: retire, view history, open in full page (opens the same component at a direct URL), copy URL
 
 ---
 
