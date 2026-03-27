@@ -65,17 +65,17 @@ A concept is never hard-deleted if it has been included in any released version.
 ## Business Rules (To Do: Check these against OpenMRS validation schema rules to verify which are OCL-specific vs. OpenMRS-specific)
 
 ### Names
-- Every concept must have at least one name
-- Each locale must have at most one name with `locale_preferred = true`
+- Every concept must have at least one name with a locale (OCL requirement)
+- Each locale must have at most one name with `locale_preferred = true` (required by OpenMRS validation schema if used)
 - Each locale should have at most one name with `name_type = "Fully Specified"` (required by OpenMRS validation schema if used)
 - A concept may have multiple names in multiple locales
 
 ### Display Name Resolution (To Do: Verify this)
 When OCL needs to show a single display name for a concept:
-1. Find names matching the user's active locale (exact match)
+1. Find names matching the user's active locale (exact match) (Note: This is a Post-V3 requirements)
 2. Among those, prefer `locale_preferred = true`
 3. Among preferred, prefer `name_type = "Fully Specified"`
-4. If no match in active locale, fall back to the repository's `default_locale`
+4. If no match in active locale, fall back to the repository's `default_locale` 
 5. If still no match, return any available name
 
 ### Concept ID

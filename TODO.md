@@ -52,25 +52,77 @@ These items have been explicitly called out as needing focused design time — n
 _Recommend handling as part of the dedicated Add Reference / Cascade session above._
 
 - [ ] **`WRITE`** `01_objects/reference.md` — **All cascade options and parameters:** Document all available cascade options and their exact parameters. Currently only `sourcemappings` is named; others are referenced but unspecified.
+Cascade presets:
+```
+class CascadePresets:
+    """Predefined cascade configurations for different use cases."""
+
+    # OpenMRS cascade with transform
+    OPENMRS_WITH_TRANSFORM = {
+        "method": "sourcetoconcepts",
+        "map_types": "Q-AND-A,CONCEPT-SET",
+        "cascade_levels": "*",
+        "return_map_types": "*",
+        "transform": "openmrs"
+    }
+
+    # OpenMRS cascade without transform
+    OPENMRS_WITHOUT_TRANSFORM = {
+        "method": "sourcetoconcepts",
+        "map_types": "Q-AND-A,CONCEPT-SET",
+        "cascade_levels": "*",
+        "return_map_types": "*"
+    }
+
+    # Source to mappings only - this is the safest
+    SOURCE_TO_MAPPINGS = {
+        "method": "sourcemappings"
+    }
+
+    # No cascade (simple references)
+    NO_CASCADE = None
+
+    # Custom cascade (to be defined by user)
+    CUSTOM = {
+        "method": "sourcetoconcepts",
+        "map_types": "Q-AND-A,CONCEPT-SET",
+        "cascade_levels": "*",
+        "return_map_types": "*"
+    }
+```
 
 
 - [ ] **`WRITE`** `01_objects/reference.md` — **In-list summary for grouped resolved resources:** Describe how the References list shows a collapsed/expanded summary of resolved concepts/mappings grouped under each reference row.
+See screenshots in resources\Reference
+
+Unaddressed comments:
+- A reference may result into concepts and/or mappings. We need a way to show both concepts and mappings that resolve (often grouping mappings with their respective concepts)
+- More visual distinction between references and expansion results is helpful. It's possible that we even separate them into separate views: References only, Results, and Combo. Note that Results overlaps a lot with the Concepts and Mappings tabs above, so it might not be necessary to actually make a new "view" for that.
+- Note that these results here are coming from a specific expansion. Meaning, the user probably should have selected (or defaulted to) an expansion for this collection, if available.
+- References on the left should display the exact contents of a reference (which presumably they are here). At the right, we can optionally show how these were resolved in an expansion. The expansion results MUST include the resolved repo (i.e. a chip with mouseover tooltip) in addition to the resolved concept/mapping resources. Remember that a canonical can be resolved to different repositories depending on the configuration of the Canonical URL Registry.
+- If there are mapping reference(s) from this source, there should be a count like "10 mappings", along with the 1 concept.
 
 ### OCLv2 Behavior Documentation
 
 - [ ] **`VERIFY`** `02_capabilities/author-concept.md` — **OCLv2 Add Mapping behavior:** Document OCLv2's current behavior for populating "Source name" via search, canonical URL handling, and external code entry. Needed before finalizing the v3 Add Mapping form design. (Flagged as a Verify note in the file.)
+See resources\Add Mappings Recording 2026-03-27 135245.gif
 
 - [ ] **`VERIFY`** `01_objects/concept.md` — **Business rules vs. OpenMRS validation schema:** Tag each business rule in `concept.md` as OCL-platform-level or OpenMRS-schema-specific. Affects what is enforced universally vs. conditionally.
+Updated
 
 - [ ] **`VERIFY`** `01_objects/concept.md` — **OpenMRS Dictionary validation rules:** Fill in the incomplete OpenMRS schema validation section with the actual rules (fully specified name per locale, coded concepts require Q-AND-A or CONCEPT-SET mapping, etc.). See [OCL API docs](https://docs.openconceptlab.org/en/latest/oclapi/openmrsvalidationschema.html) and [OpenMRS talk](https://talk.openmrs.org/t/defining-our-concept-validation-rules-for-ocl/33508).
 
 - [ ] **`VERIFY`** `01_objects/concept.md` — **Display name resolution algorithm:** Confirm the 5-step fallback logic documented in `concept.md` matches OCLv2 behavior.
+Updated
 
 ### Expansion Specification
 
 - [ ] **`VERIFY`** `01_objects/expansion.md` — **Complete expansion parameters list + defaults:** Fill in all supported parameters (currently flagged as incomplete) and confirm exact defaults for `active_only`, `repo_versions`, and any others. Check oclapi2 repo.
+Start with those two for now, but update knowledge base with potential need to add more parameters post-V3.
 
 - [ ] **`WRITE`** `01_objects/expansion.md` — **Expansion comparison (full spec):** The UI Display Rules section now has a stub referencing [ocl_issues#1853](https://github.com/OpenConceptLab/ocl_issues/issues/1853), but the full spec (entry points, what is shown, summary statistics) still needs to be written. Cross-reference with `02_capabilities/compare-resources.md`.
+  - Expansions should be selectable via checkbox, just like versions, and should be queueable for comparison just like two selected concepts would be. 
+  - Use screenshots in resources\Versions-Expansions as a starting point, but note that expansions are not covered well enough in those designs.
 
 ### Validation Specification
 
@@ -91,6 +143,7 @@ All four surface files need a reconciliation pass against current v3 designs. Jo
 ### Remaining Content Gaps
 
 - [ ] **`WRITE`** `01_objects/concept.md` — **Concept chip spec:** Add the concept chip display format (short and long form) to the UI Display Rules section. Cross-reference with `04_surfaces/design-system.md`.
+  - See 'resources\Chip and Tooltip.png' for design, plus 'resources\Objects (Chip view) · Issue #1776 · OpenConceptLab_ocl_issues.pdf' for additional detail
 
 ---
 
