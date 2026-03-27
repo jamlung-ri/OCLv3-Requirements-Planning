@@ -69,31 +69,21 @@ A concept is never hard-deleted if it has been included in any released version.
 - A concept may have multiple names in multiple locales
 
 ### Names (OpenMRS validation schema — applied when OpenMRS schema is enabled on the source)
-- Each locale must have at most one name with `locale_preferred = true`
-- Each locale should have at most one name with `name_type = "Fully Specified"`
 
-(TO Do: Integrate these rules for OpenMRS)
-Full validation rule set:
-```
-For any concept…
+Per-concept rules: (To Do: Verify these against oclapi2)
+- Must not have more than one preferred name per locale
+- All names (except short names) must be unique within the concept
+- Must not have more than one short name per locale
+- Short name must not be marked as locale preferred
+- Only one fully specified name per locale
+- At least one fully specified name (across all locales)
+- Valid values for class, datatype, name type, and locale
 
-    Must not have more than one preferred name per locale
-    All names (except short names) must be unique within the concept
-    Must not have more than one short name per locale
-    Short name must not be marked as locale preferred
-    Only one fully specified name per locale
-    At least one fully specified name (across all locales)
-    Valid values for class, data type, name type, and locale
-
-For a dictionary…
-
-    Fully specified names must be unique across all fully specified names and preferred names (synonyms marked as preferred name) within a locale*
-    Multiple concepts cannot share the same preferred name in the same locale
-    All concepts should have a unique external_id (OpenMRS UUID) with length of 36 chars (per UUID specification)
-    All concept names & descriptions should have a unique external_id (OpenMRS UUID) with length of 36 chars (per UUID specification)*
-
-*Not yet implemented in OCL validation
-```
+Dictionary-wide rules (enforced across all concepts in the source):
+- Fully specified names must be unique across all fully specified names and preferred names (synonyms marked as locale preferred) within a locale ⚠️ *Not yet implemented in OCL validation*
+- Multiple concepts cannot share the same preferred name in the same locale
+- All concepts should have a unique `external_id` (OpenMRS UUID) with length of 36 chars (per UUID specification)
+- All concept names and descriptions should have a unique `external_id` (OpenMRS UUID) with length of 36 chars (per UUID specification) ⚠️ *Not yet implemented in OCL validation*
 
 ### Display Name Resolution
 When OCL needs to show a single display name for a concept:
@@ -141,15 +131,15 @@ When OCL needs to show a single display name for a concept:
 
 ## Validation Rules by Schema
 
-### OpenMRS Dictionary Schema (to do: Verify and fill this in.)
-- Must have exactly one name with `name_type = "Fully Specified"` per locale present
+### OpenMRS Dictionary Schema
+See full rule set in [Business Rules → Names (OpenMRS validation schema)](#names-openMRS-validation-schema--applied-when-openMRS-schema-is-enabled-on-the-source) above. Additional rules:
 - Concept class must be one of the configured OpenMRS values
 - Datatype must be one of the configured OpenMRS values
 - Concepts with datatype "Coded" must have at least one mapping with `map_type = "Q-AND-A"` or `map_type = "CONCEPT-SET"`
 
 ---
 
-## UI Display Rules(To do: Add concept chip.)
+## UI Display Rules (To do: Add concept chip.)
 
 - In list views: show concept ID, display name, concept class, source chip
 - In split view / detail view: show all names grouped by locale, descriptions, core properties, mappings, custom attributes, history

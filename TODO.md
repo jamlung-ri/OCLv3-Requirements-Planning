@@ -62,7 +62,7 @@ See resources\Add Mappings Recording 2026-03-27 135245.gif
 
 - [x] **`VERIFY`** `01_objects/concept.md` — **Business rules vs. OpenMRS validation schema:** Names section split into OCL-platform rules vs. OpenMRS-schema-specific rules. ✅ 2026-03-27
 
-- [ ] **`VERIFY`** `01_objects/concept.md` — **OpenMRS Dictionary validation rules:** Fill in the incomplete OpenMRS schema validation section with the actual rules (fully specified name per locale, coded concepts require Q-AND-A or CONCEPT-SET mapping, etc.). See [OCL API docs](https://docs.openconceptlab.org/en/latest/oclapi/openmrsvalidationschema.html) and [OpenMRS talk](https://talk.openmrs.org/t/defining-our-concept-validation-rules-for-ocl/33508).
+- [x] **`VERIFY`** `01_objects/concept.md` — **OpenMRS Dictionary validation rules:** Full per-concept and dictionary-wide rule set integrated. Two rules flagged as not yet implemented in OCL validation. ✅ 2026-03-27
 
 - [x] **`VERIFY`** `01_objects/concept.md` — **Display name resolution algorithm:** Confirmed 5-step fallback logic matches OCLv2 behavior; To Do comment removed. ✅ 2026-03-27
 
@@ -155,6 +155,7 @@ These were flagged inline but are already adequately addressed elsewhere:
 | Expansion comparison (full spec) | `expansion.md` | Entry points, summary stats, diff list, unchanged collapse |
 | Business rules vs. OpenMRS validation schema | `concept.md` | Names split into OCL-platform vs. OpenMRS-schema sections |
 | Display name resolution algorithm | `concept.md` | Confirmed; To Do comment removed |
+| OpenMRS Dictionary validation rules | `concept.md` | Full per-concept and dictionary-wide rule set; two rules flagged as not yet implemented |
 
 ---
 
@@ -164,15 +165,15 @@ These were flagged inline but are already adequately addressed elsewhere:
 |---|---|---|
 | Dedicated Sessions | 3 | — |
 | P1 | 3 | 8 |
-| P2 | 9 | 23 |
+| P2 | 8 | 24 |
 | P3 | 3 | 3 |
 | Dismissed | — | 3 |
-| **Total active** | **15** | **37** |
+| **Total active** | **14** | **38** |
 
 | Action Type | Open |
 |---|---|
 | SESSION | 3 |
 | DECIDE | 3 |
 | WRITE | 2 |
-| VERIFY | 6 |
+| VERIFY | 5 |
 | CLEANUP | 1 |
