@@ -4,7 +4,7 @@
 > - Separate documentation (immediate, solid, actionable) from planning (fluid, ambitious, on hold). Features may be MVP-for-v3 or aspirational — document accordingly.
 > - After refining this documentation, supplement the human walkthrough of OCLv3 with some way for Claude to visualize OCLv3 on its own.
 
-_Last updated: 2026-03-27 (documentation pass + reorganization + write pass)_
+_Last updated: 2026-03-27 (cascade spec, in-list reference summary, expansion comparison, concept.md cleanup)_
 
 ---
 
@@ -51,78 +51,26 @@ These items have been explicitly called out as needing focused design time — n
 
 _Recommend handling as part of the dedicated Add Reference / Cascade session above._
 
-- [ ] **`WRITE`** `01_objects/reference.md` — **All cascade options and parameters:** Document all available cascade options and their exact parameters. Currently only `sourcemappings` is named; others are referenced but unspecified.
-Cascade presets:
-```
-class CascadePresets:
-    """Predefined cascade configurations for different use cases."""
+- [x] **`WRITE`** `01_objects/reference.md` — **All cascade options and parameters:** Documented four presets (None, Source to Mappings, Source to Concepts/OpenMRS, Source to Concepts + OpenMRS Transform, Custom) with full parameter table (`method`, `map_types`, `cascade_levels`, `return_map_types`, `transform`). ✅ 2026-03-27
 
-    # OpenMRS cascade with transform
-    OPENMRS_WITH_TRANSFORM = {
-        "method": "sourcetoconcepts",
-        "map_types": "Q-AND-A,CONCEPT-SET",
-        "cascade_levels": "*",
-        "return_map_types": "*",
-        "transform": "openmrs"
-    }
-
-    # OpenMRS cascade without transform
-    OPENMRS_WITHOUT_TRANSFORM = {
-        "method": "sourcetoconcepts",
-        "map_types": "Q-AND-A,CONCEPT-SET",
-        "cascade_levels": "*",
-        "return_map_types": "*"
-    }
-
-    # Source to mappings only - this is the safest
-    SOURCE_TO_MAPPINGS = {
-        "method": "sourcemappings"
-    }
-
-    # No cascade (simple references)
-    NO_CASCADE = None
-
-    # Custom cascade (to be defined by user)
-    CUSTOM = {
-        "method": "sourcetoconcepts",
-        "map_types": "Q-AND-A,CONCEPT-SET",
-        "cascade_levels": "*",
-        "return_map_types": "*"
-    }
-```
-
-
-- [ ] **`WRITE`** `01_objects/reference.md` — **In-list summary for grouped resolved resources:** Describe how the References list shows a collapsed/expanded summary of resolved concepts/mappings grouped under each reference row.
-See screenshots in resources\Reference
-
-Unaddressed comments:
-- A reference may result into concepts and/or mappings. We need a way to show both concepts and mappings that resolve (often grouping mappings with their respective concepts)
-- More visual distinction between references and expansion results is helpful. It's possible that we even separate them into separate views: References only, Results, and Combo. Note that Results overlaps a lot with the Concepts and Mappings tabs above, so it might not be necessary to actually make a new "view" for that.
-- Note that these results here are coming from a specific expansion. Meaning, the user probably should have selected (or defaulted to) an expansion for this collection, if available.
-- References on the left should display the exact contents of a reference (which presumably they are here). At the right, we can optionally show how these were resolved in an expansion. The expansion results MUST include the resolved repo (i.e. a chip with mouseover tooltip) in addition to the resolved concept/mapping resources. Remember that a canonical can be resolved to different repositories depending on the configuration of the Canonical URL Registry.
-- If there are mapping reference(s) from this source, there should be a count like "10 mappings", along with the 1 concept.
+- [x] **`WRITE`** `01_objects/reference.md` — **In-list summary for grouped resolved resources:** Documented collapsible ▶ rows, concept/mapping grouping, orphaned mappings, two-tab detail panel (Reference details + View expansion), repository chip with tooltip, expansion selection context. ✅ 2026-03-27
 
 ### OCLv2 Behavior Documentation
 
 - [ ] **`VERIFY`** `02_capabilities/author-concept.md` — **OCLv2 Add Mapping behavior:** Document OCLv2's current behavior for populating "Source name" via search, canonical URL handling, and external code entry. Needed before finalizing the v3 Add Mapping form design. (Flagged as a Verify note in the file.)
 See resources\Add Mappings Recording 2026-03-27 135245.gif
 
-- [ ] **`VERIFY`** `01_objects/concept.md` — **Business rules vs. OpenMRS validation schema:** Tag each business rule in `concept.md` as OCL-platform-level or OpenMRS-schema-specific. Affects what is enforced universally vs. conditionally.
-Updated
+- [x] **`VERIFY`** `01_objects/concept.md` — **Business rules vs. OpenMRS validation schema:** Names section split into OCL-platform rules vs. OpenMRS-schema-specific rules. ✅ 2026-03-27
 
 - [ ] **`VERIFY`** `01_objects/concept.md` — **OpenMRS Dictionary validation rules:** Fill in the incomplete OpenMRS schema validation section with the actual rules (fully specified name per locale, coded concepts require Q-AND-A or CONCEPT-SET mapping, etc.). See [OCL API docs](https://docs.openconceptlab.org/en/latest/oclapi/openmrsvalidationschema.html) and [OpenMRS talk](https://talk.openmrs.org/t/defining-our-concept-validation-rules-for-ocl/33508).
 
-- [ ] **`VERIFY`** `01_objects/concept.md` — **Display name resolution algorithm:** Confirm the 5-step fallback logic documented in `concept.md` matches OCLv2 behavior.
-Updated
+- [x] **`VERIFY`** `01_objects/concept.md` — **Display name resolution algorithm:** Confirmed 5-step fallback logic matches OCLv2 behavior; To Do comment removed. ✅ 2026-03-27
 
 ### Expansion Specification
 
-- [ ] **`VERIFY`** `01_objects/expansion.md` — **Complete expansion parameters list + defaults:** Fill in all supported parameters (currently flagged as incomplete) and confirm exact defaults for `active_only`, `repo_versions`, and any others. Check oclapi2 repo.
-Start with those two for now, but update knowledge base with potential need to add more parameters post-V3.
+- [ ] **`VERIFY`** `01_objects/expansion.md` — **Complete expansion parameters list + defaults:** Schema currently includes `active_only` (default true) and `repo_versions`. Confirm these are accurate and complete against oclapi2 implementation. Additional parameters (if any) can be added post-V3 via tbv3-knowledge-base.md.
 
-- [ ] **`WRITE`** `01_objects/expansion.md` — **Expansion comparison (full spec):** The UI Display Rules section now has a stub referencing [ocl_issues#1853](https://github.com/OpenConceptLab/ocl_issues/issues/1853), but the full spec (entry points, what is shown, summary statistics) still needs to be written. Cross-reference with `02_capabilities/compare-resources.md`.
-  - Expansions should be selectable via checkbox, just like versions, and should be queueable for comparison just like two selected concepts would be. 
-  - Use screenshots in resources\Versions-Expansions as a starting point, but note that expansions are not covered well enough in those designs.
+- [x] **`WRITE`** `01_objects/expansion.md` — **Expansion comparison (full spec):** Documented entry points (checkbox selection per expansion row, Compare button activates at 2+ selected), summary statistics bar (Added/Removed/Unchanged counts), concept diff list, resolved repo versions display, and unchanged-collapse-by-default behavior. ✅ 2026-03-27
 
 ### Validation Specification
 
@@ -202,6 +150,11 @@ These were flagged inline but are already adequately addressed elsewhere:
 | Extra attribute template configuration | `tbv3-knowledge-base.md` | Deferred post-v3 |
 | Repository Subtypes (ConceptMap, CodeSystem) | `tbv3-knowledge-base.md` | Deferred post-v3 |
 | Additional mapping list filters | `mapping.md` | Added to UI Display Rules |
+| Cascade options and parameters | `reference.md` | All presets documented with full parameter table |
+| In-list summary for grouped resolved resources | `reference.md` | Collapsible rows, two-tab detail panel, repo chip spec |
+| Expansion comparison (full spec) | `expansion.md` | Entry points, summary stats, diff list, unchanged collapse |
+| Business rules vs. OpenMRS validation schema | `concept.md` | Names split into OCL-platform vs. OpenMRS-schema sections |
+| Display name resolution algorithm | `concept.md` | Confirmed; To Do comment removed |
 
 ---
 
@@ -211,15 +164,15 @@ These were flagged inline but are already adequately addressed elsewhere:
 |---|---|---|
 | Dedicated Sessions | 3 | — |
 | P1 | 3 | 8 |
-| P2 | 14 | 18 |
+| P2 | 9 | 23 |
 | P3 | 3 | 3 |
 | Dismissed | — | 3 |
-| **Total active** | **20** | **32** |
+| **Total active** | **15** | **37** |
 
 | Action Type | Open |
 |---|---|
 | SESSION | 3 |
 | DECIDE | 3 |
-| WRITE | 5 |
-| VERIFY | 9 |
+| WRITE | 2 |
+| VERIFY | 6 |
 | CLEANUP | 1 |

@@ -80,8 +80,28 @@ References in HEAD are mutable. References in released versions are immutable.
 - Exclusion references are evaluated after inclusion references
 - A resource excluded by one reference cannot be re-included by another
 
-### Cascade Rules (To Do: Add in all cascade options and parameters)
-- Internal relationships (mappings to concepts in the same source) are included with a concept by default when `cascade = "sourcemappings"`
+### Cascade Rules
+
+Cascade determines how far OCL traverses relationships from a referenced concept when resolving it into an expansion. The following presets are supported:
+
+| Preset | Method | Description |
+|---|---|---|
+| **None** | — | Adds the referenced concept(s) only; no traversal. Safe for simple concept references. |
+| **Source to Mappings** | `sourcemappings` | Adds the concept's direct mappings (within the same source) but does not traverse to the mapped concepts. Safest option for including cross-reference mappings (e.g., SAME-AS SNOMED) without pulling in additional concepts. |
+| **Source to Concepts (OpenMRS)** | `sourcetoconcepts` | Traverses from the referenced concept through its Q-AND-A and CONCEPT-SET mappings, recursively (all levels), and returns all reachable concepts and all map types. Used for OpenMRS Q-AND-A sets. |
+| **Source to Concepts + OpenMRS Transform** | `sourcetoconcepts` + `transform: openmrs` | Same traversal as above, plus applies the OpenMRS transform (restructures the response into OpenMRS-compatible format). |
+| **Custom** | `sourcetoconcepts` | User-specified map types, cascade levels, and return map types. |
+
+**Cascade parameters:**
+
+| Parameter | Values | Notes |
+|---|---|---|
+| `method` | `sourcemappings` \| `sourcetoconcepts` | Defines the traversal strategy |
+| `map_types` | e.g. `Q-AND-A,CONCEPT-SET` | Comma-separated map types to follow during traversal (for `sourcetoconcepts`) |
+| `cascade_levels` | integer or `*` | Number of hops to traverse; `*` = all levels |
+| `return_map_types` | e.g. `*` or specific types | Which map types to include in the results |
+| `transform` | `openmrs` | Optional post-processing transform applied to results |
+
 - External mappings (cross-source) only come over with explicit cascade configuration
 - Cascade results are returned as versionless resources tied to the relevant repo version
 
@@ -117,10 +137,23 @@ In the References list:
 - Show resolved resource count (from latest expansion)
 - Show version indicator if pinned to a source version
 - Show "non-canonical version" warning badge if pinned to a version that differs from the collection's canonical source version
-(To Do: Describe behavior for viewing in-list summary of resolved concepts/mappings that are grouped)
+- Each reference row is collapsible/expandable (▶ toggle) to show inline the concepts and mappings it resolves to
+- Within the expanded row, concepts and their associated mappings are grouped together; orphaned mappings (not associated with any concept in the reference) appear as a separate group
+- Expansion results show: concept code, display name, mapping count, and a repository chip indicating the resolved source (with mouseover tooltip showing the full repository path). This is important because a canonical URL may resolve to different repositories depending on the Canonical URL Registry configuration.
+- If a reference resolves to both concepts and mappings, the count display reflects both: e.g., "3 concepts, 10 mappings"
+- Mapping sub-rows are expandable inline within the concept group
 
-In Reference detail / preview:
-- Show full expression
-- Show evaluated resources (concepts and mappings that this reference resolves to)
-- Allow tracing any result back to this reference
-- Show cascade graph if applicable
+In Reference detail panel (two-tab layout):
+
+**Tab 1 — Reference details:**
+- Reference type (Extensional / Intensional)
+- Source version (pinned or canonical)
+- Cascade method (e.g., `sourcemappings`, `sourcetoconcepts`)
+- Cascade map types (e.g., `Q-AND-A, CONCEPT-SET`)
+- Applied filters (if intensional)
+
+**Tab 2 — View expansion:**
+- Concept count and mapping count resolved by this reference (within the selected expansion)
+- Table columns: Code | Display name | Mappings (count) | Repository (chip with resolved source)
+- Orphaned mappings shown as a separate row in the table
+- Note: results shown here reflect a specific expansion. If no expansion is selected, the UI defaults to the collection's default expansion (if available).

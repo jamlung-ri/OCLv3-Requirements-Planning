@@ -121,4 +121,18 @@ Expansion detail:
 
 Expansions can be compared against each other — for example, to review the diff between the current HEAD auto-expansion and a previously released version's expansion, or to compare two custom expansions with different parameters. Expansion comparison is surfaced via the comparison component (see `02_capabilities/compare-resources.md` and `05_decisions/adrs.md` ADR-002).
 
-See also: [ocl_issues#1853](https://github.com/OpenConceptLab/ocl_issues/issues/1853) for linked documentation on expansion comparison entry points, what is shown, and summary statistics.
+**Entry points:**
+- Versions + Expansions tab: each expansion row has a checkbox (matching the checkbox affordance used for version rows). When two expansion checkboxes are selected, a **"Compare expansions"** button activates in the tab header.
+- Any two expansions within the same collection can be compared — they do not need to belong to the same version.
+
+**What is shown in the comparison:**
+- **Summary statistics bar**: shows counts of Added, Removed, and Unchanged concepts (and optionally mappings) between the two expansions
+- **Concept diff list**: rows for each concept that differs; each row indicates whether it was Added (in the newer expansion only), Removed (in the older expansion only), or Changed (present in both but with different attribute values)
+- **Resolved repo versions**: for each expansion being compared, the resolved source versions used (e.g., "CIEL v2024-01-15" vs. "CIEL v2024-08-01") are shown prominently so the user understands whether differences are from source updates or reference changes
+- Unchanged concepts are not shown by default (collapse to keep the view focused on diffs); a toggle allows showing all
+
+**Comparison component behavior:**
+- Rendered as an independent component (see ADR-002); can appear as a bottom drawer, side panel, or full page depending on context
+- Selecting "Compare expansions" queues both for the comparison component, matching the same interaction model as comparing two concepts or two versions
+
+See also: [ocl_issues#1853](https://github.com/OpenConceptLab/ocl_issues/issues/1853) for additional context on expansion comparison.

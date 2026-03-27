@@ -62,15 +62,40 @@ A concept is never hard-deleted if it has been included in any released version.
 
 ---
 
-## Business Rules (To Do: Check these against OpenMRS validation schema rules to verify which are OCL-specific vs. OpenMRS-specific)
+## Business Rules
 
-### Names
-- Every concept must have at least one name with a locale (OCL requirement)
-- Each locale must have at most one name with `locale_preferred = true` (required by OpenMRS validation schema if used)
-- Each locale should have at most one name with `name_type = "Fully Specified"` (required by OpenMRS validation schema if used)
+### Names (OCL platform rules)
+- Every concept must have at least one name with a locale
 - A concept may have multiple names in multiple locales
 
-### Display Name Resolution (To Do: Verify this)
+### Names (OpenMRS validation schema — applied when OpenMRS schema is enabled on the source)
+- Each locale must have at most one name with `locale_preferred = true`
+- Each locale should have at most one name with `name_type = "Fully Specified"`
+
+(TO Do: Integrate these rules for OpenMRS)
+Full validation rule set:
+```
+For any concept…
+
+    Must not have more than one preferred name per locale
+    All names (except short names) must be unique within the concept
+    Must not have more than one short name per locale
+    Short name must not be marked as locale preferred
+    Only one fully specified name per locale
+    At least one fully specified name (across all locales)
+    Valid values for class, data type, name type, and locale
+
+For a dictionary…
+
+    Fully specified names must be unique across all fully specified names and preferred names (synonyms marked as preferred name) within a locale*
+    Multiple concepts cannot share the same preferred name in the same locale
+    All concepts should have a unique external_id (OpenMRS UUID) with length of 36 chars (per UUID specification)
+    All concept names & descriptions should have a unique external_id (OpenMRS UUID) with length of 36 chars (per UUID specification)*
+
+*Not yet implemented in OCL validation
+```
+
+### Display Name Resolution
 When OCL needs to show a single display name for a concept:
 1. Find names matching the user's active locale (exact match) (Note: This is a Post-V3 requirements)
 2. Among those, prefer `locale_preferred = true`
