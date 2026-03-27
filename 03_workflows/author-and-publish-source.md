@@ -30,7 +30,9 @@ A Terminology Publisher (TP) creates and maintains a canonical source of concept
    - ID, Full Name, Description
    - Source Type (e.g., "Dictionary")
    - Custom Validation Schema (e.g., "OpenMRS" for CIEL)
-   - Canonical URL (required for FHIR-compatible sources)
+   - **Canonical URL** — strongly recommended for all sources. Required for FHIR-compatible sources and for registration in OCL's Global Canonical URL Registry. If left blank, a yellow banner is shown on the source page:
+     > ⚠️ **No canonical URL set.** This source will not be accessible via FHIR endpoints and cannot be registered in the global registry. [Add a canonical URL →]
+     (To Do: Add a similar warning for Collections too)
    - Default Locale and Supported Locales
    - Hierarchy Meaning (if applicable)
    - Auto-ID Assignment (if auto-assigning concept IDs)
@@ -132,4 +134,4 @@ After release, the cycle continues:
 | Duplicate concept ID | Blocked at save with inline error; user must choose a different ID |
 | Schema validation error on release | Block release; show list of errors with "Fix Now" links |
 | Concept proposal approved that creates duplicate | System detects duplicate ID; admin prompted to assign a different ID |
-| Source has no Canonical URL | Can still be used within OCL; warning shown that FHIR endpoints will not be available (To Do: Canonical URLs are recommended to use - need to encourage users to use it if possib le)|
+| Source has no Canonical URL | Source can still be used within OCL. A persistent yellow banner is shown on the source page prompting the owner to add one. FHIR endpoints are unavailable and the source cannot be registered in the global canonical URL registry until a canonical URL is set. |
