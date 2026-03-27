@@ -74,11 +74,17 @@ Only Source owners and editors can use this capability directly. Terminology Imp
 Sort weight is **not** a field in the per-mapping add/edit form. Instead, ordering of Q-AND-A and CONCEPT-SET answers is managed via **drag-and-drop reordering** within the Associations panel. The `sort_weight` value is set automatically based on the user's drag order. This pattern is already implemented in OCLv2 — see [ocl_issues#1682](https://github.com/OpenConceptLab/ocl_issues/issues/1682) for reference.
 
 ### Internal vs. External Target
-- Toggle: "OCL concept" (default) | "External code"
-- OCL concept: shows a Searchlite-style search for concepts; selecting auto-populates To Source
-- External code: shows free-text fields for code + source name + optional canonical URL
 
-> **Verify needed:** Document OCLv2's current behavior for populating "Source name" via search and canonical URL handling in the Add Mapping form, before finalizing the v3 Add Mapping form design.
+**OCLv2 behavior (verified):** The Add Mapping form uses a **search-then-fallback** model — no explicit internal/external toggle:
+
+1. User selects a map type (e.g., Q-AND-A) from the Relationship dropdown; the inline row renders with Code and Name fields
+2. User types a code into the Code field — the system searches the source for a matching concept
+3. **If a match is found:** Name and Source auto-populate from the matched concept
+4. **If no match is found:** the system transitions from "select existing" to "add custom" mode — Name and Source fields unlock for free-text entry; user manually types the name and source identifier
+
+**v3 design intent:** Replace the implicit search-then-fallback with an explicit toggle:
+- **OCL concept** (default): Searchlite-style search; selecting auto-populates To Source (with optional Name override)
+- **External code**: free-text fields for code + source name + optional canonical URL
 
 ### After Save
 - Mapping appears immediately in the concept's Associations panel

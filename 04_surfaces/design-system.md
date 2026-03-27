@@ -1,4 +1,4 @@
-# Surface: Design System (To Do: Joe to review this whole thing)
+# Surface: Design System
 
 Core visual and interaction conventions for TBv3. All surfaces must follow these patterns.
 
@@ -37,32 +37,63 @@ To Do: Add collapsible right nav options
 
 ## Object Chips
 
-Object chips are compact, clickable representations of OCL objects. They appear in-line in text, in tables, and in lists.
+Object chips are compact, clickable representations of OCL objects. They appear inline in text, in headers, and in other contexts where a resource needs to be identified as a single recognizable unit. See [OpenConceptLab/ocl_issues#1776](https://github.com/OpenConceptLab/ocl_issues/issues/1776) for the original design spec.
 
-### Short Form (Default Display)
+### Repository Chips
 
-| Object Type | Format | Example |
+Repository chips are the primary chip component. They represent a specific repo (source or collection) as a "single object" — ID, type, owner, and optionally version.
+
+**Two sizes:**
+
+| Size | Content | Example |
 |---|---|---|
-| Concept | `[ID] Name` | `12345 Malaria` |
-| Source | `owner/source` | `CIEL/CIEL` |
-| Collection | `owner/collection` | `WHO/ICD11-core` |
-| Organization | `org-id` | `OpenMRS` |
-| User | `@username` | `@paynejd` |
-| Repo Version | `source v2024-01-15` | `CIEL v2024-01-15` |
-| Expansion | `[expansion-id]` | `expansion1` |
+| Small | `[repo icon] [ID] [Type]` | `□ LOINC Code System` |
+| Regular | `[org icon] [Org] · [repo icon] [ID] [Type]` | `🏛 Regenstrief · □ LOINC Code System` |
+| Regular + version | `[org icon] [Org] · [repo icon] [ID] [Type] · [version]` | `🏛 Regenstrief · □ LOINC Code System · latest (v2.77)` |
 
-### Long Form (On Hover)
+**Content rules:**
+- Repo ID and repo type must **always** be shown together; neither appears alone
+- Repo ID is visually emphasized (bold); repo type is secondary weight; org is de-emphasized
+- Owner is usually shown; may be omitted when already clear from context (e.g., already shown in a table column)
+- Version is usually shown; omit entirely if no version is specified (do not say "no version" — just omit)
+- `latest (v2.77)` = reference resolved to latest, currently at v2.77; `latest` = unresolved reference to latest; `v2.77` = pinned to a specific version
 
-Shows a tooltip/popover with:
-- Full name
-- Key attributes (concept class + datatype for concepts; type + owner for repos)
-- Quick actions if authenticated (e.g., "Add to Collection" for concepts)
+**Repo type icons:** Source, Collection, ValueSet, Code System, Concept Map, Dictionary each have distinct icons.
 
-### Chip Styling Rules
+**Tooltip (on hover):**
+- Header line: compact chip (org · ID · type, no version)
+- Full repository name (bold, large)
+- Canonical URL (when available)
+- Resolved version
+
+**Truncation:**
+- No text wrapping (per Material design guidelines); truncate with ellipsis when space is constrained
+- Tooltip always shows the full content
+- Truncation priority: Repo ID first, then Owner, then Version, then Repo Type
+
+**Where used:**
+- Repository page header
+- Dashboard event cards
+- Inline in text when referencing a specific repo (e.g., expansion results, reference detail panel)
+- **Not used in data tables** — repository information in tables is shown as plain text (e.g., `CIEL · Source v2024-10-24`)
+
+### Concept Chips
+
+Compact inline representation of a concept.
+
+| Form | Content | Example |
+|---|---|---|
+| Short | `[ID] [Display name]` | `168887 Malaria` |
+| With source | `[ID] [Display name] · [repo chip]` | `168887 Malaria · □ CIEL` |
+
+Tooltip shows: concept class, datatype, source repo chip, quick actions if authenticated (e.g., "Add to Collection").
+
+### General Chip Rules
 - Chips are clickable (navigate to the resource's detail page)
 - Chips have a subtle background color differentiated by resource type
 - Chips must not break across lines; use text-overflow: ellipsis if constrained
 - Chip text must have sufficient contrast ratio (WCAG AA minimum)
+- Owner and version may be hidden when contextually redundant — but Repo ID and Repo Type are never omitted from a repository chip
 
 ---
 

@@ -57,8 +57,7 @@ _Recommend handling as part of the dedicated Add Reference / Cascade session abo
 
 ### OCLv2 Behavior Documentation
 
-- [ ] **`VERIFY`** `02_capabilities/author-concept.md` — **OCLv2 Add Mapping behavior:** Document OCLv2's current behavior for populating "Source name" via search, canonical URL handling, and external code entry. Needed before finalizing the v3 Add Mapping form design. (Flagged as a Verify note in the file.)
-See resources\Add Mappings Recording 2026-03-27 135245.gif
+- [x] **`VERIFY`** `02_capabilities/author-concept.md` — **OCLv2 Add Mapping behavior:** Search-then-fallback model documented: code field triggers source search; match auto-populates Name+Source; no match unlocks free-text entry. v3 design intent (explicit toggle) documented alongside. ✅ 2026-03-27
 
 - [x] **`VERIFY`** `01_objects/concept.md` — **Business rules vs. OpenMRS validation schema:** Names section split into OCL-platform rules vs. OpenMRS-schema-specific rules. ✅ 2026-03-27
 
@@ -90,8 +89,7 @@ All four surface files need a reconciliation pass against current v3 designs. Jo
 
 ### Remaining Content Gaps
 
-- [ ] **`WRITE`** `01_objects/concept.md` — **Concept chip spec:** Add the concept chip display format (short and long form) to the UI Display Rules section. Cross-reference with `04_surfaces/design-system.md`.
-  - See 'resources\Chip and Tooltip.png' for design, plus 'resources\Objects (Chip view) · Issue #1776 · OpenConceptLab_ocl_issues.pdf' for additional detail
+- [x] **`WRITE`** `01_objects/concept.md` + `04_surfaces/design-system.md` — **Chip spec:** Concept chip documented (short form + with-source form + tooltip). Repository chip spec documented in design-system.md (two sizes, content rules, version display, tooltip structure, table vs. inline usage). Based on ocl_issues#1776. ✅ 2026-03-27
 
 ---
 
@@ -156,6 +154,8 @@ These were flagged inline but are already adequately addressed elsewhere:
 | Business rules vs. OpenMRS validation schema | `concept.md` | Names split into OCL-platform vs. OpenMRS-schema sections |
 | Display name resolution algorithm | `concept.md` | Confirmed; To Do comment removed |
 | OpenMRS Dictionary validation rules | `concept.md` | Full per-concept and dictionary-wide rule set; two rules flagged as not yet implemented |
+| Concept chip spec + Repository chip spec | `concept.md`, `design-system.md` | Concept chip (short/source/tooltip) and full repository chip spec (sizes, content rules, version display, tooltip, table vs. inline) based on ocl_issues#1776 |
+| OCLv2 Add Mapping behavior | `author-concept.md` | Search-then-fallback model documented; v3 explicit toggle design intent documented alongside |
 
 ---
 
@@ -165,15 +165,15 @@ These were flagged inline but are already adequately addressed elsewhere:
 |---|---|---|
 | Dedicated Sessions | 3 | — |
 | P1 | 3 | 8 |
-| P2 | 8 | 24 |
+| P2 | 6 | 26 |
 | P3 | 3 | 3 |
 | Dismissed | — | 3 |
-| **Total active** | **14** | **38** |
+| **Total active** | **12** | **40** |
 
 | Action Type | Open |
 |---|---|
 | SESSION | 3 |
 | DECIDE | 3 |
-| WRITE | 2 |
-| VERIFY | 5 |
+| WRITE | 1 |
+| VERIFY | 4 |
 | CLEANUP | 1 |

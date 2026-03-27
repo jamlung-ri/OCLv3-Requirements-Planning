@@ -139,7 +139,25 @@ See full rule set in [Business Rules → Names (OpenMRS validation schema)](#nam
 
 ---
 
-## UI Display Rules (To do: Add concept chip.)
+## UI Display Rules
+
+### Concept Chip
+
+When a concept needs to be represented as a compact inline element (e.g., in a mapping association list, in a cascade result, in an "Add to Collection" picker):
+
+| Form | Content | Example |
+|---|---|---|
+| Short | `[ID] [Display name]` | `168887 Malaria` |
+| With source context | `[ID] [Display name] · [repo chip]` | `168887 Malaria · □ CIEL` |
+
+On hover, a tooltip shows:
+- Concept class and datatype
+- Source repo chip (owner · ID · type · version)
+- Quick actions if authenticated (e.g., "Add to Collection")
+
+Chips must not wrap across lines; truncate with ellipsis if space is constrained. See `04_surfaces/design-system.md` for chip styling rules.
+
+### List and Detail Views
 
 - In list views: show concept ID, display name, concept class, source chip
 - In split view / detail view: show all names grouped by locale, descriptions, core properties, mappings, custom attributes, history
